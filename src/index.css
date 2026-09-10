@@ -1,0 +1,193 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/*
+ * Sistema de diseño de Bio Emplast — estilo editorial minimalista.
+ * Colores de marca tomados directamente del logo oficial (no aproximados).
+ */
+
+@theme inline {
+  --font-sans: "Manrope", "system-ui", sans-serif;
+  --font-display: "Manrope", "system-ui", sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-brand-green: var(--brand-green);
+  --color-brand-green-dark: var(--brand-green-dark);
+  --color-brand-cyan: var(--brand-cyan);
+  --color-brand-yellow: var(--brand-yellow);
+  --color-brand-ink: var(--brand-ink);
+}
+
+:root {
+  --radius: 0.5rem;
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+  --card: #ffffff;
+  --card-foreground: #0a0a0a;
+  --primary: #14532d;
+  --primary-foreground: #ffffff;
+  --secondary: #f5f6f5;
+  --secondary-foreground: #0a0a0a;
+  --muted: #f5f6f5;
+  --muted-foreground: #6b7280;
+  --accent: #eef6ee;
+  --accent-foreground: #14532d;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #e2e5e2;
+  --input: #e2e5e2;
+  --ring: #38ce0a;
+
+  /* Colores oficiales de marca Bio Emplast, tomados del logo */
+  --brand-green: #38CE0A;
+  --brand-green-dark: #14532d;
+  --brand-cyan: #02EDFB;
+  --brand-yellow: #F3FE0A;
+  --brand-ink: #0A0A0A;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+  }
+  a { outline-offset: 4px; }
+  ::selection { background: var(--brand-yellow); color: var(--brand-ink); }
+}
+
+@utility site-container {
+  width: min(100% - 2rem, 90rem);
+  margin-inline: auto;
+  @media (width >= 64rem) { width: min(100% - 6rem, 90rem); }
+}
+
+@utility editorial-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.25rem, 7.4vw, 6rem);
+  font-weight: 800;
+  line-height: 0.97;
+  letter-spacing: 0;
+}
+
+@utility page-kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  &::before { content: ""; width: 2rem; height: 2px; background: var(--brand-green); }
+}
+
+@utility site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in oklab, var(--background) 94%, transparent);
+  backdrop-filter: blur(12px);
+}
+
+@utility nav-link {
+  position: relative;
+  padding-block: 0.4rem;
+  color: var(--muted-foreground);
+  font-size: 0.82rem;
+  font-weight: 700;
+  &::after { content: ""; position: absolute; inset: auto 0 -0.25rem; height: 2px; transform: scaleX(0); transform-origin: left; background: var(--brand-cyan); transition: transform 180ms ease; }
+  &:hover { color: var(--foreground); }
+  &:hover::after { transform: scaleX(1); }
+}
+
+@utility nav-link-active {
+  color: var(--foreground);
+  &::after { transform: scaleX(1); }
+}
+
+@utility mobile-nav { border-top: 1px solid var(--border); background: var(--background); }
+@utility footer-label { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; }
+@utility footer-link { color: var(--muted-foreground); transition: color 160ms ease; &:hover { color: var(--foreground); } }
+
+@utility catalog-active {
+  color: var(--brand-ink);
+  box-shadow: inset 3px 0 0 var(--brand-green);
+  padding-left: 1rem;
+}
+
+@utility brand-mark {
+  display: grid;
+  grid-template-columns: repeat(3, 0.45rem);
+  align-items: end;
+  gap: 2px;
+  height: 1.5rem;
+  span { display: block; width: 0.45rem; }
+  span:nth-child(1) { height: 1rem; background: var(--brand-green); }
+  span:nth-child(2) { height: 1.5rem; background: var(--brand-cyan); }
+  span:nth-child(3) { height: 0.7rem; background: var(--brand-yellow); }
+}
+
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+@utility editorial-rise { animation: rise 650ms cubic-bezier(.2,.8,.2,1) both; }
+
+@utility card-shadow {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: var(--card);
+  box-shadow: 0 1px 2px rgba(10, 10, 10, 0.04);
+  transition: box-shadow 200ms ease, transform 200ms ease;
+  &:hover {
+    box-shadow: 0 12px 32px -12px rgba(10, 10, 10, 0.18);
+    transform: translateY(-2px);
+  }
+}
+
+@utility hero-overlay {
+  background:
+    linear-gradient(120deg, rgba(10, 20, 10, 0.92) 0%, rgba(20, 83, 45, 0.82) 55%, rgba(20, 83, 45, 0.55) 100%);
+}
+
+@utility stat-card {
+  border-radius: var(--radius-lg);
+  background: var(--accent);
+  padding: 1.5rem;
+}
+
+@utility social-card {
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.5rem;
+  color: white;
+  text-align: center;
+  transition: transform 200ms ease;
+  &:hover { transform: translateY(-4px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

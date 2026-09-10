@@ -1,0 +1,147 @@
+import { useState } from "react"
+import { Loader2, Send } from "lucide-react"
+
+import { supabase } from "../lib/supabase"
+import { Button } from "./ui/Button"
+
+/**
+ * Formulario de contacto funcional.
+ *
+ * REQUIERE una tabla en Supabase llamada "mensajes_contacto" con columnas:
+ *   id (uuid, primary key, default gen_random_uuid())
+ *   nombre (text)
+ *   correo (text)
+ *   telefono (text, nullable)
+ *   mensaje (text)
+ *   created_at (timestamptz, default now())
+ *
+ * Y las variables de entorno en .env:
+ *   VITE_SUPABASE_URL=...
+ *   VITE_SUPABASE_ANON_KEY=...
+ */
+export function ContactForm() {
+  const [form, setForm] = useState({ nombre: "", correo: "", telefono: "", mensaje: "" })
+  const [status, setStatus] = useState("idle") // idle | loading | success | error | not-configured
+
+  function handleChange(e) {
+    setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault()
+
+    if (!supabase) {
+      // Supabase aún no está configurado (falta el .env) — no intentamos enviar.
+      setStatus("not-configured")
+      return
+    }
+
+    setStatus("loading")
+    try {
+      const { error } = await supabase.from("mensajes_contacto").insert([form])
+      if (error) throw error
+      setStatus("success")
+      setForm({ nombre: "", correo: "", telefono: "", mensaje: "" })
+    } catch (err) {
+      console.error("Error al enviar el formulario:", err)
+      setStatus("error")
+    }
+  }
+
+  if (status === "success") {
+    return (
+      <div className="card-shadow p-8 text-center">
+        <p className="text-lg font-bold text-brand-green-dark">¡Mensaje enviado!</p>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Te responderemos lo antes posible. También puedes escribirnos directo por
+          WhatsApp si prefieres una respuesta más rápida.
+        </p>
+      </div>
+    )
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="card-shadow space-y-4 p-6 sm:p-8">
+      <div>
+        <label htmlFor="nombre" className="text-sm font-bold">
+          Nombre
+        </label>
+        <input
+          id="nombre"
+          name="nombre"
+          required
+          value={form.nombre}
+          onChange={handleChange}
+          className="mt-1.5 w-full rounded-md border border-input bg-background px-3.5 py-2.5 text-sm outline-none focus:border-brand-green"
+        />
+      </div>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div>
+          <label htmlFor="correo" className="text-sm font-bold">
+            Correo
+          </label>
+          <input
+            id="correo"
+            name="correo"
+            type="email"
+            required
+            value={form.correo}
+            onChange={handleChange}
+            className="mt-1.5 w-full rounded-md border border-input bg-background px-3.5 py-2.5 text-sm outline-none focus:border-brand-green"
+          />
+        </div>
+        <div>
+          <label htmlFor="telefono" className="text-sm font-bold">
+            Teléfono (opcional)
+          </label>
+          <input
+            id="telefono"
+            name="telefono"
+            value={form.telefono}
+            onChange={handleChange}
+            className="mt-1.5 w-full rounded-md border border-input bg-background px-3.5 py-2.5 text-sm outline-none focus:border-brand-green"
+          />
+        </div>
+      </div>
+      <div>
+        <label htmlFor="mensaje" className="text-sm font-bold">
+          ¿Qué necesitas cotizar?
+        </label>
+        <textarea
+          id="mensaje"
+          name="mensaje"
+          required
+          rows={4}
+          value={form.mensaje}
+          onChange={handleChange}
+          className="mt-1.5 w-full rounded-md border border-input bg-background px-3.5 py-2.5 text-sm outline-none focus:border-brand-green resize-none"
+        />
+      </div>
+
+      {status === "not-configured" && (
+        <p className="text-sm text-muted-foreground">
+          El formulario todavía no está conectado. Mientras tanto, escríbenos directo por
+          WhatsApp.
+        </p>
+      )}
+
+      {status === "error" && (
+        <p className="text-sm text-destructive">
+          No se pudo enviar el mensaje. Intenta de nuevo o escríbenos por WhatsApp.
+        </p>
+      )}
+
+      <Button type="submit" variant="whatsapp" size="lg" className="w-full" disabled={status === "loading"}>
+        {status === "loading" ? (
+          <>
+            <Loader2 className="animate-spin" /> Enviando...
+          </>
+        ) : (
+          <>
+            <Send /> Enviar solicitud
+          </>
+        )}
+      </Button>
+    </form>
+  )
+}

@@ -33,33 +33,17 @@ export function SiteShell({ children }) {
           <Brand />
           <nav className="hidden items-center gap-8 md:flex" aria-label="Navegación principal">
             {navigation.map((item) => (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                end={item.to === "/"}
-                className={({ isActive }) =>
-                  isActive ? "nav-link nav-link-active" : "nav-link"
-                }
-              >
+              <NavLink key={item.to} to={item.to} end={item.to === "/"} className={({ isActive }) => (isActive ? "nav-link nav-link-active" : "nav-link")}>
                 {item.label}
               </NavLink>
             ))}
           </nav>
           <div className="hidden md:block">
             <Button asChild variant="whatsapp" size="lg">
-              <a href={whatsappUrl} target="_blank" rel="noreferrer">
-                <MessageCircle /> WhatsApp
-              </a>
+              <a href={whatsappUrl} target="_blank" rel="noreferrer"><MessageCircle /> WhatsApp</a>
             </Button>
           </div>
-          <Button
-            variant="icon"
-            size="icon"
-            className="md:hidden"
-            aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen((current) => !current)}
-          >
+          <Button variant="icon" size="icon" className="md:hidden" aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"} aria-expanded={menuOpen} onClick={() => setMenuOpen((current) => !current)}>
             {menuOpen ? <X /> : <Menu />}
           </Button>
         </div>
@@ -67,19 +51,12 @@ export function SiteShell({ children }) {
           <nav className="mobile-nav md:hidden" aria-label="Navegación móvil">
             <div className="site-container flex flex-col py-5">
               {navigation.map((item) => (
-                <Link
-                  key={item.to}
-                  to={item.to}
-                  className="border-b border-border py-4 text-2xl font-bold"
-                  onClick={() => setMenuOpen(false)}
-                >
+                <Link key={item.to} to={item.to} className="border-b border-border py-4 text-2xl font-bold" onClick={() => setMenuOpen(false)}>
                   {item.label}
                 </Link>
               ))}
               <Button asChild variant="whatsapp" size="lg" className="mt-6 self-start">
-                <a href={whatsappUrl} target="_blank" rel="noreferrer">
-                  <MessageCircle /> WhatsApp
-                </a>
+                <a href={whatsappUrl} target="_blank" rel="noreferrer"><MessageCircle /> WhatsApp</a>
               </Button>
             </div>
           </nav>
@@ -88,38 +65,37 @@ export function SiteShell({ children }) {
 
       <main>{children}</main>
 
-      <footer className="mt-24 border-t border-border lg:mt-40">
+      <footer className="mt-24 bg-brand-green-dark text-white lg:mt-40">
         <div className="site-container grid gap-12 py-12 lg:grid-cols-[1.3fr_1fr_1fr] lg:py-16">
           <div>
-            <Brand />
-            <p className="mt-5 max-w-sm text-sm leading-6 text-muted-foreground">
-              Soluciones de empaque industrial para proteger, conservar y mover mejor cada
-              producto.
+            <Link to="/" className="flex items-center gap-2.5" aria-label="Bio Emplast, inicio">
+              <img src="/logo-icono.png" alt="" aria-hidden="true" className="h-9 w-auto brightness-0 invert" />
+              <span className="font-display text-lg font-extrabold leading-none text-white">Bio Emplast</span>
+            </Link>
+            <p className="mt-5 max-w-sm text-sm leading-6 text-white/70">
+              Soluciones de empaque industrial para proteger, conservar y mover mejor cada producto.
             </p>
           </div>
           <div>
-            <p className="footer-label">Navegación</p>
+            <p className="text-xs font-extrabold uppercase tracking-[.14em] text-white/60">Navegación</p>
             <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
               {navigation.map((item) => (
-                <Link key={item.to} to={item.to} className="footer-link">
+                <Link key={item.to} to={item.to} className="text-white/80 transition-colors hover:text-white">
                   {item.label}
                 </Link>
               ))}
             </div>
           </div>
           <div>
-            <p className="footer-label">Contacto</p>
-            <div className="mt-4 space-y-2 text-sm text-muted-foreground">
+            <p className="text-xs font-extrabold uppercase tracking-[.14em] text-white/60">Contacto</p>
+            <div className="mt-4 space-y-2 text-sm text-white/80">
               <p>+57 301 533 0596 · +57 311 822 1246</p>
-              {/* TODO: reemplazar con el correo real cuando la clienta lo confirme */}
               <p>ventas@bioemplast.co</p>
-              <a className="footer-link block" href="https://facebook.com" target="_blank" rel="noreferrer">
-                Facebook ↗
-              </a>
+              <a className="block text-white/80 transition-colors hover:text-white" href="https://facebook.com" target="_blank" rel="noreferrer">Facebook ↗</a>
             </div>
           </div>
         </div>
-        <div className="site-container flex flex-col gap-2 border-t border-border py-6 text-xs text-muted-foreground sm:flex-row sm:justify-between">
+        <div className="site-container flex flex-col gap-2 border-t border-white/15 py-6 text-xs text-white/60 sm:flex-row sm:justify-between">
           <p>© 2026 Bio Emplast. Todos los derechos reservados.</p>
           <p>Empaque responsable · Colombia</p>
         </div>

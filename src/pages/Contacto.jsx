@@ -36,7 +36,7 @@ export default function Contacto() {
         </div>
       </AnimatedSection>
 
-      <AnimatedSection className="site-container grid gap-8 pb-20 lg:grid-cols-[1fr_1.2fr] lg:pb-28">
+      <AnimatedSection className="site-container grid gap-8 pb-16 lg:grid-cols-[1fr_1.2fr] lg:pb-20">
         {/* Información de contacto */}
         <div className="card-shadow p-6 sm:p-8">
           <p className="text-xs font-extrabold uppercase tracking-[.14em] text-brand-green-dark">
@@ -45,16 +45,19 @@ export default function Contacto() {
           <dl className="mt-8 space-y-7">
             <div>
               <dt className="flex items-center gap-3 text-sm font-bold">
-                <Phone className="size-4 text-brand-green-dark" /> Teléfono
+                <Phone className="size-4 text-brand-green-dark" /> Teléfono / WhatsApp
               </dt>
-              {/* TODO: reemplazar con el número real de Bio Emplast */}
-              <dd className="mt-2 text-muted-foreground">+57 300 000 0000</dd>
+              <dd className="mt-2 text-muted-foreground">
+                +57 301 533 0596
+                <br />
+                +57 311 822 1246
+              </dd>
             </div>
             <div>
               <dt className="flex items-center gap-3 text-sm font-bold">
                 <Mail className="size-4 text-brand-green-dark" /> Correo
               </dt>
-              {/* TODO: reemplazar con el correo real de Bio Emplast */}
+              {/* TODO: reemplazar con el correo real cuando la clienta lo confirme */}
               <dd className="mt-2 text-muted-foreground">ventas@bioemplast.co</dd>
             </div>
             <div>
@@ -62,12 +65,7 @@ export default function Contacto() {
                 <MapPin className="size-4 text-brand-green-dark" /> Ubicación
               </dt>
               <dd className="mt-2 text-muted-foreground">
-                <a
-                  href={GOOGLE_MAPS_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 font-semibold text-brand-green-dark hover:text-brand-green"
-                >
+                <a href={GOOGLE_MAPS_URL} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 font-semibold text-brand-green-dark hover:text-brand-green">
                   Ver ubicación en Google Maps <ExternalLink className="size-3.5" />
                 </a>
               </dd>
@@ -86,6 +84,32 @@ export default function Contacto() {
 
         {/* Formulario funcional */}
         <ContactForm />
+      </AnimatedSection>
+
+      {/* Fotos reales de la fachada, para que el cliente reconozca el local */}
+      <AnimatedSection className="site-container pb-20 lg:pb-28">
+        <p className="text-xs font-extrabold uppercase tracking-[.14em] text-brand-green-dark">
+          Así nos vas a encontrar
+        </p>
+        <h2 className="mt-3 text-2xl font-extrabold sm:text-3xl">
+          Nuestro local en fotos
+        </h2>
+        <div className="mt-8 grid gap-6 sm:grid-cols-2">
+          <div className="card-shadow overflow-hidden">
+            <img
+              src="/ubicacion-1.jpg"
+              alt="Fachada del local de Bio Emplast"
+              className="aspect-[4/3] w-full object-cover"
+            />
+          </div>
+          <div className="card-shadow overflow-hidden">
+            <img
+              src="/ubicacion-2.jpg"
+              alt="Vista de la entrada de Bio Emplast"
+              className="aspect-[4/3] w-full object-cover"
+            />
+          </div>
+        </div>
       </AnimatedSection>
     </>
   )

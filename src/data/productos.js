@@ -1,6 +1,6 @@
-// Número de WhatsApp de la empresa (formato internacional, sin +, sin espacios)
-// TODO: reemplazar con el número real de Bio Emplast
-export const WHATSAPP_NUMERO = "573001234567"
+// Número real de Bio Emplast (visible en la fachada del local).
+// Si prefieren usar el otro número (311 822 1246) como principal, solo cambia esto.
+export const WHATSAPP_NUMERO = "573015330596"
 
 export function linkWhatsApp(mensaje) {
   return `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(mensaje)}`

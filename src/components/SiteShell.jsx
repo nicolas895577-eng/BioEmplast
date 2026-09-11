@@ -16,12 +16,8 @@ const navigation = [
 
 function Brand() {
   return (
-    <Link to="/" className="group flex items-center gap-3" aria-label="Bio Emplast, inicio">
-      <span className="brand-mark" aria-hidden="true">
-        <span />
-        <span />
-        <span />
-      </span>
+    <Link to="/" className="flex items-center gap-2.5" aria-label="Bio Emplast, inicio">
+      <img src="/logo-icono.png" alt="" aria-hidden="true" className="h-9 w-auto" />
       <span className="font-display text-lg font-extrabold leading-none">Bio Emplast</span>
     </Link>
   )
@@ -114,8 +110,8 @@ export function SiteShell({ children }) {
           <div>
             <p className="footer-label">Contacto</p>
             <div className="mt-4 space-y-2 text-sm text-muted-foreground">
-              {/* TODO: reemplazar con el teléfono real de Bio Emplast */}
-              <p>+57 300 000 0000</p>
+              <p>+57 301 533 0596 · +57 311 822 1246</p>
+              {/* TODO: reemplazar con el correo real cuando la clienta lo confirme */}
               <p>ventas@bioemplast.co</p>
               <a className="footer-link block" href="https://facebook.com" target="_blank" rel="noreferrer">
                 Facebook ↗

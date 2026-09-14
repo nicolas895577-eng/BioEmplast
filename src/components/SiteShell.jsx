@@ -1,6 +1,6 @@
-import { Link, NavLink } from "react-router-dom"
+import { Link, NavLink, useLocation } from "react-router-dom"
 import { Menu, MessageCircle, X } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import { Button } from "./ui/Button"
 import { WHATSAPP_NUMERO } from "../data/productos"
@@ -14,26 +14,39 @@ const navigation = [
   { label: "Contacto", to: "/contacto" },
 ]
 
-function Brand() {
+function Brand({ light }) {
   return (
     <Link to="/" className="flex items-center gap-2.5" aria-label="Bio Emplast, inicio">
       <img src="/logo-icono.png" alt="" aria-hidden="true" className="h-9 w-auto" />
-      <span className="font-display text-lg font-extrabold leading-none">Bio Emplast</span>
+      <span className={`font-display text-lg font-extrabold leading-none ${light ? "text-white" : "text-foreground"}`}>Bio Emplast</span>
     </Link>
   )
 }
 
 export function SiteShell({ children }) {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const location = useLocation()
+  const isHome = location.pathname === "/"
+  const transparent = isHome && !scrolled
+
+  useEffect(() => {
+    function onScroll() {
+      setScrolled(window.scrollY > 60)
+    }
+    onScroll()
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [location.pathname])
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <header className="site-header">
+      <header className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${transparent ? "bg-transparent border-b border-transparent" : "bg-background/95 backdrop-blur-md border-b border-border"}`}>
         <div className="site-container flex h-20 items-center justify-between gap-5">
-          <Brand />
+          <Brand light={transparent} />
           <nav className="hidden items-center gap-8 md:flex" aria-label="Navegación principal">
             {navigation.map((item) => (
-              <NavLink key={item.to} to={item.to} end={item.to === "/"} className={({ isActive }) => (isActive ? "nav-link nav-link-active" : "nav-link")}>
+              <NavLink key={item.to} to={item.to} end={item.to === "/"} className={({ isActive }) => `${transparent ? "nav-link-light" : "nav-link"} ${isActive && !transparent ? "nav-link-active" : ""}`}>
                 {item.label}
               </NavLink>
             ))}
@@ -43,7 +56,7 @@ export function SiteShell({ children }) {
               <a href={whatsappUrl} target="_blank" rel="noreferrer"><MessageCircle /> WhatsApp</a>
             </Button>
           </div>
-          <Button variant="icon" size="icon" className="md:hidden" aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"} aria-expanded={menuOpen} onClick={() => setMenuOpen((current) => !current)}>
+          <Button variant="icon" size="icon" className={`md:hidden ${transparent ? "border-white/40 bg-white/10 text-white hover:border-white" : ""}`} aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"} aria-expanded={menuOpen} onClick={() => setMenuOpen((current) => !current)}>
             {menuOpen ? <X /> : <Menu />}
           </Button>
         </div>
@@ -63,13 +76,13 @@ export function SiteShell({ children }) {
         ) : null}
       </header>
 
-      <main>{children}</main>
+      <main className={isHome ? undefined : "pt-20"}>{children}</main>
 
       <footer className="mt-24 bg-brand-green-dark text-white lg:mt-40">
         <div className="site-container grid gap-12 py-12 lg:grid-cols-[1.3fr_1fr_1fr] lg:py-16">
           <div>
             <Link to="/" className="flex items-center gap-2.5" aria-label="Bio Emplast, inicio">
-              <img src="/logo-icono.png" alt="" aria-hidden="true" className="h-9 w-auto brightness-0 invert" />
+              <img src="/logo-icono.png" alt="" aria-hidden="true" className="h-9 w-auto" />
               <span className="font-display text-lg font-extrabold leading-none text-white">Bio Emplast</span>
             </Link>
             <p className="mt-5 max-w-sm text-sm leading-6 text-white/70">

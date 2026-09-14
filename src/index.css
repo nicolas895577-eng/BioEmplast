@@ -191,3 +191,13 @@
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
+@utility nav-link-light {
+  position: relative;
+  padding-block: 0.4rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.82rem;
+  font-weight: 700;
+  &::after { content: ""; position: absolute; inset: auto 0 -0.25rem; height: 2px; transform: scaleX(0); transform-origin: left; background: var(--brand-yellow); transition: transform 180ms ease; }
+  &:hover { color: #fff; }
+  &:hover::after { transform: scaleX(1); }
+}

@@ -28,7 +28,8 @@ export function SiteShell({ children }) {
   const [scrolled, setScrolled] = useState(false)
   const location = useLocation()
   const isHome = location.pathname === "/"
-  const transparent = isHome && !scrolled
+  const transparent = !scrolled
+  const lightText = isHome && transparent
 
   useEffect(() => {
     function onScroll() {
@@ -37,16 +38,22 @@ export function SiteShell({ children }) {
     onScroll()
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
+  }, [])
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+    setScrolled(false)
+    setMenuOpen(false)
   }, [location.pathname])
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <header className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${transparent ? "bg-transparent border-b border-transparent" : "bg-background/95 backdrop-blur-md border-b border-border"}`}>
+      <header className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${transparent ? "bg-transparent border-b border-transparent" : "bg-background/95 backdrop-blur-md border-b border-border shadow-sm"}`}>
         <div className="site-container flex h-20 items-center justify-between gap-5">
-          <Brand light={transparent} />
+          <Brand light={lightText} />
           <nav className="hidden items-center gap-8 md:flex" aria-label="Navegación principal">
             {navigation.map((item) => (
-              <NavLink key={item.to} to={item.to} end={item.to === "/"} className={({ isActive }) => `${transparent ? "nav-link-light" : "nav-link"} ${isActive && !transparent ? "nav-link-active" : ""}`}>
+              <NavLink key={item.to} to={item.to} end={item.to === "/"} className={({ isActive }) => `${lightText ? "nav-link-light" : "nav-link"} ${isActive && !lightText ? "nav-link-active" : ""}`}>
                 {item.label}
               </NavLink>
             ))}
@@ -56,7 +63,7 @@ export function SiteShell({ children }) {
               <a href={whatsappUrl} target="_blank" rel="noreferrer"><MessageCircle /> WhatsApp</a>
             </Button>
           </div>
-          <Button variant="icon" size="icon" className={`md:hidden ${transparent ? "border-white/40 bg-white/10 text-white hover:border-white" : ""}`} aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"} aria-expanded={menuOpen} onClick={() => setMenuOpen((current) => !current)}>
+          <Button variant="icon" size="icon" className={`md:hidden ${lightText ? "border-white/40 bg-white/10 text-white hover:border-white" : ""}`} aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"} aria-expanded={menuOpen} onClick={() => setMenuOpen((current) => !current)}>
             {menuOpen ? <X /> : <Menu />}
           </Button>
         </div>

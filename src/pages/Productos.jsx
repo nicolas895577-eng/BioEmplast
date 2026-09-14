@@ -5,7 +5,6 @@ import { AnimatedSection } from "../components/AnimatedSection"
 import { catalogo } from "../data/catalogo"
 import { linkWhatsApp } from "../data/productos"
 
-// Notas cortas por categoría
 const notas = {
   "empaques-basicos": "Soluciones esenciales",
   "stretch-film": "14 medidas",
@@ -16,7 +15,6 @@ const notas = {
   zunchos: "Sujeción industrial",
 }
 
-// Aplana items/subgrupos a una sola lista de tarjetas {label, imagen}
 function tarjetasDe(grupo) {
   const tarjetas = []
   if (grupo.items) {
@@ -51,8 +49,29 @@ function ImgOrPlaceholder({ src, alt }) {
       alt={alt}
       loading="lazy"
       onError={() => setFailed(true)}
-      className="h-full w-full object-cover"
+      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
     />
+  )
+}
+
+function ProductoTarjeta({ label, imagen }) {
+  return (
+    <div className="group card-shadow overflow-hidden">
+      <div className="aspect-square overflow-hidden bg-secondary">
+        <ImgOrPlaceholder src={imagen} alt={label} />
+      </div>
+      <div className="p-4">
+        <p className="text-sm font-semibold leading-snug text-foreground">{label}</p>
+        <a
+          href={linkWhatsApp(`Hola Bio Emplast, quisiera cotizar: ${label}`)}
+          target="_blank"
+          rel="noreferrer"
+          className="mt-3 inline-flex w-full items-center justify-center gap-1.5 rounded-md bg-brand-green py-2 text-xs font-bold text-brand-ink transition-colors hover:bg-brand-green/85"
+        >
+          <MessageCircle className="size-3.5" /> Cotizar por WhatsApp
+        </a>
+      </div>
+    </div>
   )
 }
 
@@ -75,7 +94,6 @@ export default function Productos() {
         </p>
       </AnimatedSection>
 
-      {/* Selector de categorías, estilo pestañas con tarjeta activa */}
       <div className="site-container">
         <div className="flex flex-wrap gap-3 border-b border-border pb-8">
           {catalogo.map((g, i) => (
@@ -105,22 +123,7 @@ export default function Productos() {
 
         <div className="mt-10 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
           {tarjetas.map((t) => (
-            <div key={t.label} className="card-shadow overflow-hidden">
-              <div className="aspect-square">
-                <ImgOrPlaceholder src={t.imagen} alt={t.label} />
-              </div>
-              <div className="p-3.5">
-                <p className="text-sm font-semibold leading-snug">{t.label}</p>
-                <a
-                  href={linkWhatsApp(`Hola Bio Emplast, quisiera cotizar: ${t.label}`)}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-3 inline-flex w-full items-center justify-center gap-1.5 rounded-md border border-border py-2 text-xs font-bold hover:border-brand-green hover:text-brand-green-dark transition-colors"
-                >
-                  <MessageCircle className="size-3.5" /> Cotizar
-                </a>
-              </div>
-            </div>
+            <ProductoTarjeta key={t.label} label={t.label} imagen={t.imagen} />
           ))}
         </div>
       </AnimatedSection>

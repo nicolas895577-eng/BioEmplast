@@ -6,6 +6,9 @@ import { AnimatedSection } from "../components/AnimatedSection"
 import { whatsappUrl } from "../components/SiteShell"
 
 const GOOGLE_MAPS_URL = "https://goo.gl/maps/icrowjepP9zUoeUz9?g_st=aw"
+const LAT = 4.608528
+const LNG = -74.130611
+const MAP_EMBED_URL = `https://www.google.com/maps?q=${LAT},${LNG}&z=17&output=embed`
 
 export default function Contacto() {
   return (
@@ -56,7 +59,7 @@ export default function Contacto() {
               </dt>
               <dd className="mt-2 text-muted-foreground">
                 <a href={GOOGLE_MAPS_URL} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 font-semibold text-brand-green-dark hover:text-brand-green">
-                  Ver ubicación en Google Maps <ExternalLink className="size-3.5" />
+                  Abrir en Google Maps <ExternalLink className="size-3.5" />
                 </a>
               </dd>
             </div>
@@ -72,6 +75,20 @@ export default function Contacto() {
         </div>
 
         <ContactForm />
+      </AnimatedSection>
+
+      <AnimatedSection className="site-container pb-16 lg:pb-20">
+        <p className="text-xs font-extrabold uppercase tracking-[.14em] text-brand-green-dark">Cómo llegar</p>
+        <h2 className="mt-3 text-2xl font-extrabold sm:text-3xl">Encuéntranos aquí</h2>
+        <div className="card-shadow mt-8 overflow-hidden">
+          <iframe
+            title="Ubicación de Bio Emplast"
+            src={MAP_EMBED_URL}
+            className="h-[420px] w-full border-0"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </div>
       </AnimatedSection>
 
       <AnimatedSection className="site-container pb-20 lg:pb-28">

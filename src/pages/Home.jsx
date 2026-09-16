@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import { Helmet } from "react-helmet-async"
 import {
   ArrowRight,
   Award,
@@ -17,26 +18,10 @@ import { ProductCarousel } from "../components/ProductCarousel"
 import { whatsappUrl } from "../components/SiteShell"
 
 const razones = [
-  {
-    icon: Recycle,
-    titulo: "Enfoque ecológico",
-    texto: "Materiales y procesos orientados a reducir el impacto ambiental de tu operación.",
-  },
-  {
-    icon: ShieldCheck,
-    titulo: "Calidad garantizada",
-    texto: "Control de espesor, resistencia y sellado en cada lote que sale de nuestra planta.",
-  },
-  {
-    icon: Truck,
-    titulo: "Entrega puntual",
-    texto: "Programamos despachos para que tu producción nunca se detenga por falta de material.",
-  },
-  {
-    icon: Headphones,
-    titulo: "Atención personalizada",
-    texto: "Un asesor te acompaña desde la cotización hasta la entrega de tu pedido.",
-  },
+  { icon: Recycle, titulo: "Enfoque ecológico", texto: "Materiales y procesos orientados a reducir el impacto ambiental de tu operación." },
+  { icon: ShieldCheck, titulo: "Calidad garantizada", texto: "Control de espesor, resistencia y sellado en cada lote que sale de nuestra planta." },
+  { icon: Truck, titulo: "Entrega puntual", texto: "Programamos despachos para que tu producción nunca se detenga por falta de material." },
+  { icon: Headphones, titulo: "Atención personalizada", texto: "Un asesor te acompaña desde la cotización hasta la entrega de tu pedido." },
 ]
 
 const estadisticas = [
@@ -51,9 +36,21 @@ const redes = [
   { nombre: "Facebook", usuario: "Bio Emplast", icon: Link2, gradiente: "from-blue-500 to-blue-700", url: "https://facebook.com" },
 ]
 
+const preguntas = [
+  { q: "¿Cómo cotizo un producto?", a: "Encuentra el producto en la sección Productos y da clic en \"Cotizar por WhatsApp\", o escríbenos directamente contándonos qué necesitas." },
+  { q: "¿Puedo visitar el local?", a: "Sí, puedes visitarnos en nuestro local en Bogotá. Encuentra la dirección exacta y fotos en la sección de Contacto." },
+  { q: "¿Qué tipos de empaque manejan?", a: "Manejamos stretch film, bolsas, vinipel, precortes, elementos de bioseguridad y más. Puedes ver el catálogo completo en la sección Productos." },
+  { q: "¿Qué hago si no encuentro lo que necesito en el catálogo?", a: "Escríbenos por WhatsApp contándonos qué necesitas, y te confirmamos disponibilidad." },
+]
+
 export default function Home() {
   return (
     <>
+      <Helmet>
+        <title>Bio Emplast | Empaque industrial con enfoque ecológico</title>
+        <meta name="description" content="Bio Emplast S.A.S.: stretch film, bolsas, vinipel, precortes y bioseguridad para la industria alimenticia y agropecuaria. Cotiza por WhatsApp." />
+      </Helmet>
+
       <section className="relative min-h-[85vh] flex items-center overflow-hidden">
         <img src="/productos/rollos--57.jpg" alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover" />
         <div className="hero-overlay absolute inset-0" />
@@ -158,6 +155,22 @@ export default function Home() {
       </section>
 
       <AnimatedSection className="site-container py-20 lg:py-28">
+        <p className="text-xs font-bold uppercase tracking-[.14em] text-brand-green-dark">Preguntas frecuentes</p>
+        <h2 className="mt-3 max-w-2xl text-3xl font-extrabold sm:text-4xl">¿Tienes dudas?</h2>
+        <div className="mt-10 divide-y divide-border border-t border-border">
+          {preguntas.map((p) => (
+            <details key={p.q} className="group py-5">
+              <summary className="flex cursor-pointer list-none items-center justify-between font-bold">
+                {p.q}
+                <span className="ml-4 text-brand-green-dark transition-transform group-open:rotate-45">+</span>
+              </summary>
+              <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground">{p.a}</p>
+            </details>
+          ))}
+        </div>
+      </AnimatedSection>
+
+      <AnimatedSection className="site-container pb-20 lg:pb-28">
         <div className="card-shadow flex flex-col items-start gap-6 bg-brand-green-dark p-10 text-white sm:flex-row sm:items-center sm:justify-between lg:p-14">
           <h2 className="max-w-lg text-2xl font-extrabold sm:text-3xl">¿Listo para tu próximo pedido de empaque?</h2>
           <Button asChild variant="whatsapp" size="lg">

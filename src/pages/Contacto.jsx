@@ -1,4 +1,5 @@
 import { ExternalLink, Link2, Mail, MapPin, MessageCircle, Phone } from "lucide-react"
+import { Helmet } from "react-helmet-async"
 
 import { Button } from "../components/ui/Button"
 import { ContactForm } from "../components/ContactForm"
@@ -13,6 +14,11 @@ const MAP_EMBED_URL = `https://www.google.com/maps?q=${LAT},${LNG}&z=17&output=e
 export default function Contacto() {
   return (
     <>
+      <Helmet>
+        <title>Contacto | Bio Emplast</title>
+        <meta name="description" content="Escríbenos por WhatsApp o completa el formulario para cotizar empaques industriales con Bio Emplast S.A.S." />
+      </Helmet>
+
       <section className="relative min-h-[50vh] flex items-center overflow-hidden">
         <img src="/ubicacion-1.jpg" alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover" />
         <div className="hero-overlay absolute inset-0" />

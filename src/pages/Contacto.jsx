@@ -5,43 +5,34 @@ import { ContactForm } from "../components/ContactForm"
 import { AnimatedSection } from "../components/AnimatedSection"
 import { whatsappUrl } from "../components/SiteShell"
 
-// Link real de ubicación que compartió la clienta
 const GOOGLE_MAPS_URL = "https://goo.gl/maps/icrowjepP9zUoeUz9?g_st=aw"
 
 export default function Contacto() {
   return (
     <>
-      <AnimatedSection className="site-container py-16 text-center lg:py-20">
-        <p className="text-xs font-bold uppercase tracking-[.14em] text-brand-green-dark">
-          Contacto
-        </p>
-        <h1 className="mt-3 text-4xl font-extrabold sm:text-5xl">
-          ¿Listo para tu próximo pedido?
-        </h1>
-        <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-          Escríbenos por WhatsApp para una respuesta inmediata, o completa el formulario y
-          te contactamos.
-        </p>
-        <div className="mt-8 flex flex-wrap justify-center gap-4">
-          <Button asChild variant="whatsapp" size="lg">
-            <a href={whatsappUrl} target="_blank" rel="noreferrer">
-              <MessageCircle /> Escribir por WhatsApp
-            </a>
-          </Button>
-          <Button asChild variant="outline" size="lg">
-            <a href="https://facebook.com" target="_blank" rel="noreferrer">
-              <Link2 /> Ver Facebook <ExternalLink />
-            </a>
-          </Button>
+      <section className="relative min-h-[50vh] flex items-center overflow-hidden">
+        <img src="/ubicacion-1.jpg" alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover" />
+        <div className="hero-overlay absolute inset-0" />
+        <div className="site-container relative py-20 text-center text-white">
+          <AnimatedSection className="mx-auto max-w-2xl">
+            <p className="text-xs font-bold uppercase tracking-[.14em] text-brand-yellow">Contacto</p>
+            <h1 className="mt-4 text-4xl font-extrabold sm:text-5xl">¿Listo para tu próximo pedido?</h1>
+            <p className="mx-auto mt-4 max-w-xl text-white/85">Escríbenos por WhatsApp para una respuesta inmediata, o completa el formulario y te contactamos.</p>
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
+              <Button asChild variant="whatsapp" size="lg">
+                <a href={whatsappUrl} target="_blank" rel="noreferrer"><MessageCircle /> Escribir por WhatsApp</a>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="border-white bg-white text-brand-ink hover:bg-white/90">
+                <a href="https://facebook.com" target="_blank" rel="noreferrer"><Link2 /> Ver Facebook <ExternalLink /></a>
+              </Button>
+            </div>
+          </AnimatedSection>
         </div>
-      </AnimatedSection>
+      </section>
 
-      <AnimatedSection className="site-container grid gap-8 pb-16 lg:grid-cols-[1fr_1.2fr] lg:pb-20">
-        {/* Información de contacto */}
+      <AnimatedSection className="site-container grid gap-8 py-16 lg:grid-cols-[1fr_1.2fr] lg:py-20">
         <div className="card-shadow p-6 sm:p-8">
-          <p className="text-xs font-extrabold uppercase tracking-[.14em] text-brand-green-dark">
-            Información de contacto
-          </p>
+          <p className="text-xs font-extrabold uppercase tracking-[.14em] text-brand-green-dark">Información de contacto</p>
           <dl className="mt-8 space-y-7">
             <div>
               <dt className="flex items-center gap-3 text-sm font-bold">
@@ -57,7 +48,6 @@ export default function Contacto() {
               <dt className="flex items-center gap-3 text-sm font-bold">
                 <Mail className="size-4 text-brand-green-dark" /> Correo
               </dt>
-              {/* TODO: reemplazar con el correo real cuando la clienta lo confirme */}
               <dd className="mt-2 text-muted-foreground">ventas@bioemplast.co</dd>
             </div>
             <div>
@@ -72,7 +62,6 @@ export default function Contacto() {
             </div>
             <div>
               <dt className="text-sm font-bold">Horario de atención</dt>
-              {/* TODO: confirmar horario real con la clienta */}
               <dd className="mt-2 leading-7 text-muted-foreground">
                 Lunes a viernes · 8:00 a.m. – 5:30 p.m.
                 <br />
@@ -82,32 +71,18 @@ export default function Contacto() {
           </dl>
         </div>
 
-        {/* Formulario funcional */}
         <ContactForm />
       </AnimatedSection>
 
-      {/* Fotos reales de la fachada, para que el cliente reconozca el local */}
       <AnimatedSection className="site-container pb-20 lg:pb-28">
-        <p className="text-xs font-extrabold uppercase tracking-[.14em] text-brand-green-dark">
-          Así nos vas a encontrar
-        </p>
-        <h2 className="mt-3 text-2xl font-extrabold sm:text-3xl">
-          Nuestro local en fotos
-        </h2>
+        <p className="text-xs font-extrabold uppercase tracking-[.14em] text-brand-green-dark">Así nos vas a encontrar</p>
+        <h2 className="mt-3 text-2xl font-extrabold sm:text-3xl">Nuestro local en fotos</h2>
         <div className="mt-8 grid gap-6 sm:grid-cols-2">
           <div className="card-shadow overflow-hidden">
-            <img
-              src="/ubicacion-1.jpg"
-              alt="Fachada del local de Bio Emplast"
-              className="aspect-[4/3] w-full object-cover"
-            />
+            <img src="/ubicacion-1.jpg" alt="Fachada del local de Bio Emplast" className="aspect-[4/3] w-full object-cover" />
           </div>
           <div className="card-shadow overflow-hidden">
-            <img
-              src="/ubicacion-2.jpg"
-              alt="Vista de la entrada de Bio Emplast"
-              className="aspect-[4/3] w-full object-cover"
-            />
+            <img src="/ubicacion-2.jpg" alt="Vista de la entrada de Bio Emplast" className="aspect-[4/3] w-full object-cover" />
           </div>
         </div>
       </AnimatedSection>

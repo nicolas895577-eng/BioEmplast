@@ -14,6 +14,8 @@ const navigation = [
   { label: "Contacto", to: "/contacto" },
 ]
 
+const heroPages = ["/", "/productos", "/contacto"]
+
 function Brand({ light }) {
   return (
     <Link to="/" className="flex items-center gap-2.5" aria-label="Bio Emplast, inicio">
@@ -27,9 +29,9 @@ export function SiteShell({ children }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const location = useLocation()
-  const isHome = location.pathname === "/"
+  const hasHero = heroPages.includes(location.pathname)
   const transparent = !scrolled
-  const lightText = isHome && transparent
+  const lightText = hasHero && transparent
 
   useEffect(() => {
     function onScroll() {
@@ -83,7 +85,7 @@ export function SiteShell({ children }) {
         ) : null}
       </header>
 
-      <main className={isHome ? undefined : "pt-20"}>{children}</main>
+      <main className={hasHero ? undefined : "pt-20"}>{children}</main>
 
       <footer className="mt-24 bg-brand-green-dark text-white lg:mt-40">
         <div className="site-container grid gap-12 py-12 lg:grid-cols-[1.3fr_1fr_1fr] lg:py-16">

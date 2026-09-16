@@ -37,21 +37,9 @@ function tarjetasDe(grupo) {
 function ImgOrPlaceholder({ src, alt }) {
   const [failed, setFailed] = useState(!src)
   if (failed) {
-    return (
-      <div className="flex h-full w-full items-center justify-center bg-secondary text-xs text-muted-foreground">
-        Foto pendiente
-      </div>
-    )
+    return <div className="flex h-full w-full items-center justify-center bg-secondary text-xs text-muted-foreground">Foto pendiente</div>
   }
-  return (
-    <img
-      src={src}
-      alt={alt}
-      loading="lazy"
-      onError={() => setFailed(true)}
-      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-    />
-  )
+  return <img src={src} alt={alt} loading="lazy" onError={() => setFailed(true)} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
 }
 
 function ProductoTarjeta({ label, imagen }) {
@@ -62,12 +50,7 @@ function ProductoTarjeta({ label, imagen }) {
       </div>
       <div className="p-4">
         <p className="text-sm font-semibold leading-snug text-foreground">{label}</p>
-        <a
-          href={linkWhatsApp(`Hola Bio Emplast, quisiera cotizar: ${label}`)}
-          target="_blank"
-          rel="noreferrer"
-          className="mt-3 inline-flex w-full items-center justify-center gap-1.5 rounded-md bg-brand-green py-2 text-xs font-bold text-brand-ink transition-colors hover:bg-brand-green/85"
-        >
+        <a href={linkWhatsApp(`Hola Bio Emplast, quisiera cotizar: ${label}`)} target="_blank" rel="noreferrer" className="mt-3 inline-flex w-full items-center justify-center gap-1.5 rounded-md bg-brand-green py-2 text-xs font-bold text-brand-ink transition-colors hover:bg-brand-green/85">
           <MessageCircle className="size-3.5" /> Cotizar por WhatsApp
         </a>
       </div>
@@ -82,30 +65,22 @@ export default function Productos() {
 
   return (
     <>
-      <AnimatedSection className="site-container py-16 lg:py-20">
-        <p className="text-xs font-bold uppercase tracking-[.14em] text-brand-green-dark">
-          Catálogo
-        </p>
-        <h1 className="mt-3 max-w-3xl text-4xl font-extrabold sm:text-5xl">
-          Una solución para cada forma de empacar
-        </h1>
-        <p className="mt-4 max-w-xl text-muted-foreground">
-          Selecciona una línea de producto para ver las medidas y colores disponibles.
-        </p>
-      </AnimatedSection>
+      <section className="relative min-h-[50vh] flex items-center overflow-hidden">
+        <img src="/productos/bolsa-manija-colores-negra-blanca-naranj-bolsa-20klx100-48.jpg" alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover" />
+        <div className="hero-overlay absolute inset-0" />
+        <div className="site-container relative py-20 text-white">
+          <AnimatedSection className="max-w-2xl">
+            <p className="text-xs font-bold uppercase tracking-[.14em] text-brand-yellow">Catálogo</p>
+            <h1 className="mt-4 text-4xl font-extrabold sm:text-5xl">Una solución para cada forma de empacar</h1>
+            <p className="mt-4 max-w-xl text-white/85">Selecciona una línea de producto para ver las medidas y colores disponibles.</p>
+          </AnimatedSection>
+        </div>
+      </section>
 
-      <div className="site-container">
+      <div className="site-container pt-14">
         <div className="flex flex-wrap gap-3 border-b border-border pb-8">
           {catalogo.map((g, i) => (
-            <button
-              key={g.id}
-              onClick={() => setActive(i)}
-              className={`rounded-full px-4 py-2 text-sm font-bold transition-colors ${
-                active === i
-                  ? "bg-brand-green-dark text-white"
-                  : "bg-secondary text-foreground hover:bg-secondary/70"
-              }`}
-            >
+            <button key={g.id} onClick={() => setActive(i)} className={`rounded-full px-4 py-2 text-sm font-bold transition-colors ${active === i ? "bg-brand-green-dark text-white" : "bg-secondary text-foreground hover:bg-secondary/70"}`}>
               {g.nombre}
             </button>
           ))}
@@ -115,9 +90,7 @@ export default function Productos() {
       <AnimatedSection key={grupo.id} className="site-container py-14 lg:py-20">
         <div className="flex items-end justify-between gap-4">
           <h2 className="text-2xl font-extrabold sm:text-3xl">{grupo.nombre}</h2>
-          <span className="hidden text-sm text-muted-foreground sm:block">
-            {notas[grupo.id]}
-          </span>
+          <span className="hidden text-sm text-muted-foreground sm:block">{notas[grupo.id]}</span>
         </div>
         <p className="mt-2 max-w-2xl text-sm text-muted-foreground">{grupo.descripcion}</p>
 

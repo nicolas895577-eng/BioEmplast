@@ -1,8 +1,10 @@
 import { Link, NavLink, useLocation } from "react-router-dom"
+import { Helmet } from "react-helmet-async"
 import { Menu, MessageCircle, X } from "lucide-react"
 import { useEffect, useState } from "react"
 
 import { Button } from "./ui/Button"
+import { BackToTop } from "./BackToTop"
 import { WHATSAPP_NUMERO } from "../data/productos"
 
 export const whatsappUrl = `https://wa.me/${WHATSAPP_NUMERO}`
@@ -15,6 +17,17 @@ const navigation = [
 ]
 
 const heroPages = ["/", "/productos", "/contacto"]
+
+const businessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Bio Emplast S.A.S.",
+  description: "Fabricación y comercialización de empaques plásticos flexibles para la industria alimenticia y agropecuaria.",
+  telephone: ["+57 301 533 0596", "+57 311 822 1246"],
+  email: "ventas@bioemplast.co",
+  geo: { "@type": "GeoCoordinates", latitude: 4.608528, longitude: -74.130611 },
+  areaServed: "Bogotá, Colombia",
+}
 
 function Brand({ light }) {
   return (
@@ -50,6 +63,10 @@ export function SiteShell({ children }) {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(businessSchema)}</script>
+      </Helmet>
+
       <header className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${transparent ? "bg-transparent border-b border-transparent" : "bg-background/95 backdrop-blur-md border-b border-border shadow-sm"}`}>
         <div className="site-container flex h-20 items-center justify-between gap-5">
           <Brand light={lightText} />
@@ -106,6 +123,9 @@ export function SiteShell({ children }) {
                   {item.label}
                 </Link>
               ))}
+              <Link to="/privacidad" className="text-white/80 transition-colors hover:text-white">
+                Privacidad
+              </Link>
             </div>
           </div>
           <div>
@@ -122,6 +142,7 @@ export function SiteShell({ children }) {
           <p>Empaque responsable · Colombia</p>
         </div>
       </footer>
+      <BackToTop />
     </div>
   )
 }

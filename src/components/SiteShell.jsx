@@ -104,7 +104,7 @@ export function SiteShell({ children }) {
 
       <main className={hasHero ? undefined : "pt-20"}>{children}</main>
 
-      <footer className="mt-24 bg-brand-green-dark text-white lg:mt-40">
+      <footer className="bg-brand-green-dark text-white">
         <div className="site-container grid gap-12 py-12 lg:grid-cols-[1.3fr_1fr_1fr] lg:py-16">
           <div>
             <Link to="/" className="flex items-center gap-2.5" aria-label="Bio Emplast, inicio">

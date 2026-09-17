@@ -201,12 +201,15 @@ export default function Home() {
         </div>
       </AnimatedSection>
 
-      <AnimatedSection className="site-container pb-20 lg:pb-28">
-        <div className="card-shadow flex flex-col items-start gap-6 bg-brand-green-dark p-10 text-white sm:flex-row sm:items-center sm:justify-between lg:p-14">
-          <h2 className="max-w-lg text-2xl font-extrabold sm:text-3xl">¿Listo para tu próximo pedido de empaque?</h2>
-          <Button asChild variant="whatsapp" size="lg">
-            <a href={whatsappUrl} target="_blank" rel="noreferrer"><MessageCircle /> Escríbenos ahora</a>
-          </Button>
+      <AnimatedSection as="section" className="bg-brand-green-dark py-20 text-center text-white lg:py-28">
+        <div className="site-container">
+          <h2 className="mx-auto max-w-2xl text-3xl font-extrabold sm:text-4xl">¿Listo para tu próximo pedido de empaque?</h2>
+          <p className="mx-auto mt-4 max-w-xl text-white/80">Escríbenos y te confirmamos disponibilidad, medidas y tiempos de entrega.</p>
+          <div className="mt-8">
+            <Button asChild variant="whatsapp" size="lg">
+              <a href={whatsappUrl} target="_blank" rel="noreferrer"><MessageCircle /> Escríbenos ahora</a>
+            </Button>
+          </div>
         </div>
       </AnimatedSection>
     </>

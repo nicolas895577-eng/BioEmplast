@@ -137,6 +137,8 @@ export const catalogo = [
       { nombre: "Guantes de Manipulación", imagen: null },
       { nombre: "Tapabocas Desechable", imagen: null },
       { nombre: "Bata Quirúrgica Desechable Antifluidos", imagen: "/productos/bata-quirurgica-desechable-antifluidos-62.jpg" },
+      { nombre: "Bolsa Riesgo Biológico Roja (Hospitalaria)", imagen: null },
+      { nombre: "Bolsa Riesgo Biológico Verde (Hospitalaria)", imagen: null },
     ],
   },
   {

@@ -4,6 +4,7 @@ import {
   ArrowRight,
   Award,
   Camera,
+  CheckCircle2,
   Headphones,
   Link2,
   MessageCircle,
@@ -42,6 +43,12 @@ const preguntas = [
   { q: "¿Puedo visitar el local?", a: "Sí, puedes visitarnos en nuestro local en Bogotá. Encuentra la dirección exacta y fotos en la sección de Contacto." },
   { q: "¿Qué tipos de empaque manejan?", a: "Manejamos stretch film, bolsas, vinipel, precortes, elementos de bioseguridad y más. Puedes ver el catálogo completo en la sección Productos." },
   { q: "¿Qué hago si no encuentro lo que necesito en el catálogo?", a: "Escríbenos por WhatsApp contándonos qué necesitas, y te confirmamos disponibilidad." },
+]
+
+const checklistProceso = [
+  "Maquinaria industrial en cada etapa del proceso",
+  "Control de calidad y trazabilidad en la producción",
+  "Bodega organizada y lista para despacho",
 ]
 
 export default function Home() {
@@ -136,13 +143,27 @@ export default function Home() {
       </AnimatedSection>
 
       <section className="bg-secondary/60 py-20 lg:py-28">
-        <AnimatedSection className="site-container">
-          <p className="text-xs font-bold uppercase tracking-[.14em] text-brand-green-dark">Nuestros procesos</p>
-          <h2 className="mt-3 max-w-2xl text-3xl font-extrabold sm:text-4xl">Así trabajamos, de principio a fin</h2>
-          <p className="mt-4 max-w-xl text-muted-foreground">Un vistazo real a nuestra planta, maquinaria y proceso de producción.</p>
-          <div className="mt-10">
-            <ProcessVideos />
+        <AnimatedSection className="site-container grid gap-12 lg:grid-cols-2 lg:items-center">
+          <div>
+            <span className="inline-block rounded-full bg-brand-green/15 px-3 py-1 text-xs font-bold uppercase tracking-wide text-brand-green-dark">
+              Nuestro proceso
+            </span>
+            <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl">Así trabajamos, de principio a fin</h2>
+            <p className="mt-5 text-muted-foreground leading-7">
+              Cada pedido pasa por un proceso controlado, desde la selección de materia
+              prima hasta el empaque final, respaldado por maquinaria industrial y
+              personal capacitado en cada etapa de la producción.
+            </p>
+            <ul className="mt-6 space-y-3">
+              {checklistProceso.map((item) => (
+                <li key={item} className="flex items-start gap-2.5 text-sm">
+                  <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-brand-green-dark" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
           </div>
+          <ProcessVideos />
         </AnimatedSection>
       </section>
 

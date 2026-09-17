@@ -15,6 +15,7 @@ import {
 import { Button } from "../components/ui/Button"
 import { AnimatedSection } from "../components/AnimatedSection"
 import { ProductCarousel } from "../components/ProductCarousel"
+import { ProcessVideos } from "../components/ProcessVideos"
 import { whatsappUrl } from "../components/SiteShell"
 
 const razones = [
@@ -135,24 +136,33 @@ export default function Home() {
       </AnimatedSection>
 
       <section className="bg-secondary/60 py-20 lg:py-28">
-        <AnimatedSection className="site-container text-center">
-          <p className="text-xs font-bold uppercase tracking-[.14em] text-brand-green-dark">Redes sociales</p>
-          <h2 className="mt-3 text-3xl font-extrabold sm:text-4xl">Síguenos para más contenido</h2>
-          <p className="mx-auto mt-4 max-w-xl text-muted-foreground">Novedades de producto, tips de empaque y lo que hacemos día a día en planta.</p>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 max-w-xl mx-auto">
-            {redes.map((r, i) => (
-              <AnimatedSection key={r.nombre} as="a" delay={i * 0.1} className={`social-card bg-gradient-to-br ${r.gradiente}`}>
-                <a href={r.url} target="_blank" rel="noreferrer" className="block">
-                  <r.icon className="mx-auto size-9" />
-                  <p className="mt-4 font-bold">{r.nombre}</p>
-                  <p className="text-sm text-white/80">{r.usuario}</p>
-                  <span className="mt-4 inline-block rounded-full bg-white/20 px-4 py-1.5 text-sm font-bold">Seguir →</span>
-                </a>
-              </AnimatedSection>
-            ))}
+        <AnimatedSection className="site-container">
+          <p className="text-xs font-bold uppercase tracking-[.14em] text-brand-green-dark">Nuestros procesos</p>
+          <h2 className="mt-3 max-w-2xl text-3xl font-extrabold sm:text-4xl">Así trabajamos, de principio a fin</h2>
+          <p className="mt-4 max-w-xl text-muted-foreground">Un vistazo real a nuestra planta, maquinaria y proceso de producción.</p>
+          <div className="mt-10">
+            <ProcessVideos />
           </div>
         </AnimatedSection>
       </section>
+
+      <AnimatedSection className="site-container text-center py-20 lg:py-28">
+        <p className="text-xs font-bold uppercase tracking-[.14em] text-brand-green-dark">Redes sociales</p>
+        <h2 className="mt-3 text-3xl font-extrabold sm:text-4xl">Síguenos para más contenido</h2>
+        <p className="mx-auto mt-4 max-w-xl text-muted-foreground">Novedades de producto, tips de empaque y lo que hacemos día a día en planta.</p>
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 max-w-xl mx-auto">
+          {redes.map((r, i) => (
+            <AnimatedSection key={r.nombre} as="a" delay={i * 0.1} className={`social-card bg-gradient-to-br ${r.gradiente}`}>
+              <a href={r.url} target="_blank" rel="noreferrer" className="block">
+                <r.icon className="mx-auto size-9" />
+                <p className="mt-4 font-bold">{r.nombre}</p>
+                <p className="text-sm text-white/80">{r.usuario}</p>
+                <span className="mt-4 inline-block rounded-full bg-white/20 px-4 py-1.5 text-sm font-bold">Seguir →</span>
+              </a>
+            </AnimatedSection>
+          ))}
+        </div>
+      </AnimatedSection>
 
       <AnimatedSection className="site-container py-20 lg:py-28">
         <p className="text-xs font-bold uppercase tracking-[.14em] text-brand-green-dark">Preguntas frecuentes</p>

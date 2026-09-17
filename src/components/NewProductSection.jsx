@@ -36,20 +36,20 @@ export function NewProductSection() {
           </div>
         </div>
 
-        <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_1.4fr] lg:items-center">
+        <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_1.4fr] lg:items-stretch">
           <div className="card-shadow overflow-hidden">
-            <img src="/nuevo-producto/una-lifestyle.jpg" alt="Bolsas Una a Una en uso" className="aspect-[3/2] w-full object-cover" />
+            <img src="/nuevo-producto/una-lifestyle.jpg" alt="Bolsas Una a Una en uso" className="aspect-[3/2] w-full object-cover lg:h-full lg:aspect-auto" />
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-3">
+          <div className="grid items-stretch gap-5 sm:grid-cols-3">
             {presentaciones.map((p) => (
-              <div key={p.nombre} className="card-shadow overflow-hidden">
+              <div key={p.nombre} className="card-shadow flex h-full flex-col overflow-hidden">
                 <div className="aspect-square bg-white">
                   <img src={p.imagen} alt={`Una a Una ${p.nombre}`} className="h-full w-full object-contain p-2" />
                 </div>
-                <div className="p-4">
+                <div className="flex flex-1 flex-col p-4">
                   <p className="font-bold">{p.nombre}</p>
-                  <ul className="mt-1.5 space-y-0.5 text-xs text-muted-foreground">
+                  <ul className="mt-1.5 flex-1 space-y-0.5 text-xs text-muted-foreground">
                     {p.detalles.map((d) => (
                       <li key={d}>{d}</li>
                     ))}

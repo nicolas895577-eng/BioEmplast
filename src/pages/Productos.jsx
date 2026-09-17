@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async"
 import { useMemo, useState } from "react"
 
 import { AnimatedSection } from "../components/AnimatedSection"
+import { NewProductSection } from "../components/NewProductSection"
 import { catalogo } from "../data/catalogo"
 import { linkWhatsApp } from "../data/productos"
 
@@ -97,6 +98,8 @@ export default function Productos() {
           </AnimatedSection>
         </div>
       </section>
+
+      <NewProductSection />
 
       <div className="site-container pt-14">
         <div className="relative max-w-md">

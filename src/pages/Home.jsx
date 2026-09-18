@@ -17,6 +17,7 @@ import { Button } from "../components/ui/Button"
 import { AnimatedSection } from "../components/AnimatedSection"
 import { ProductCarousel } from "../components/ProductCarousel"
 import { ProcessVideos } from "../components/ProcessVideos"
+import { ColombiaMap } from "../components/ColombiaMap"
 import { whatsappUrl } from "../components/SiteShell"
 
 const razones = [
@@ -184,6 +185,12 @@ export default function Home() {
           ))}
         </div>
       </AnimatedSection>
+
+      <section className="bg-secondary/60 py-20 lg:py-28">
+        <AnimatedSection className="site-container">
+          <ColombiaMap />
+        </AnimatedSection>
+      </section>
 
       <AnimatedSection className="site-container py-20 lg:py-28">
         <p className="text-xs font-bold uppercase tracking-[.14em] text-brand-green-dark">Preguntas frecuentes</p>

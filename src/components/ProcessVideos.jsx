@@ -14,7 +14,7 @@ export function ProcessVideos() {
   return (
     <div className="mx-auto w-full max-w-xs">
       <div className="card-shadow overflow-hidden">
-        <video key={current.video} controls preload="none" poster={current.poster} className="aspect-[9/16] w-full bg-black object-cover">
+        <video key={current.video} controls autoPlay muted loop playsInline preload="auto" poster={current.poster} className="aspect-[9/16] w-full bg-black object-cover">
           <source src={current.video} type="video/mp4" />
         </video>
       </div>

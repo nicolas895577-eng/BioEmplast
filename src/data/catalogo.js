@@ -13,6 +13,7 @@ export const catalogo = [
       { nombre: "Bolsatina (calibre 0,50 - 0,70 - 1, y a medida)", imagen: "/productos/bolsatina-en-calibre-0-50-0-70-1-y-en-cu-3.jpg" },
       { nombre: "Bolsa Ziploc", imagen: "/productos/bolsa-ziploc-4.jpg" },
       { nombre: "Precintos Plásticos para Trazabilidad", imagen: "/productos/precintos-plasticos-para-trazabilidad-5.jpg", destacado: true },
+      { nombre: "Lona Payaso (80 x 120 cm)", imagen: "/productos/lona-payaso-64.jpg" },
     ],
   },
   {

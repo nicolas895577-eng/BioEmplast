@@ -74,7 +74,7 @@ export default function Contacto() {
               <dd className="mt-2 leading-7 text-muted-foreground">
                 Lunes a viernes · 8:00 a.m. – 5:30 p.m.
                 <br />
-                Sábados · 8:00 a.m. – 12:00 m.
+                Sábados · 8:00 a.m. – 2:00 p.m.
               </dd>
             </div>
           </dl>

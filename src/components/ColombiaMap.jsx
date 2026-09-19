@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { MessageCircle, MapPin } from "lucide-react"
+import { MessageCircle, MapPin, Truck } from "lucide-react"
 
 import { departamentosColombia, COLOMBIA_MAP_VIEWBOX, bogotaDC } from "../data/colombiaMap"
 import { linkWhatsApp } from "../data/productos"
@@ -13,14 +13,16 @@ export function ColombiaMap() {
   return (
     <div className="grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:items-center">
       <div>
-        <p className="text-xs font-bold uppercase tracking-[.14em] text-brand-green-dark">Cobertura</p>
-        <h2 className="mt-3 text-3xl font-extrabold sm:text-4xl">Consulta si hacemos envíos a tu departamento</h2>
-        <p className="mt-4 max-w-md text-muted-foreground">Selecciona tu departamento en el mapa y te confirmamos por WhatsApp disponibilidad y tiempos de entrega.</p>
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-green/15 px-3 py-1 text-xs font-bold uppercase tracking-wide text-brand-green-dark">
+          <Truck className="size-3.5" /> Cobertura nacional
+        </span>
+        <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl">¡Hacemos envíos a todo el país!</h2>
+        <p className="mt-4 max-w-md text-muted-foreground">Selecciona tu departamento y te confirmamos el tiempo de entrega por WhatsApp.</p>
         {activo && (
           <div className="mt-6 inline-flex flex-col items-start gap-3 rounded-lg border border-border bg-card p-4">
             <p className="flex items-center gap-2 font-bold"><MapPin className="size-4 text-brand-green-dark" /> {activo.nombre}</p>
-            <a href={linkWhatsApp(`Hola Bio Emplast, quisiera saber si hacen envíos a ${activo.nombre}`)} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 rounded-md bg-brand-green px-4 py-2 text-xs font-bold text-brand-ink transition-colors hover:bg-brand-green/85">
-              <MessageCircle className="size-3.5" /> Preguntar por WhatsApp
+            <a href={linkWhatsApp(`Hola Bio Emplast, quisiera saber el tiempo de entrega a ${activo.nombre}`)} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 rounded-md bg-brand-green px-4 py-2 text-xs font-bold text-brand-ink transition-colors hover:bg-brand-green/85">
+              <MessageCircle className="size-3.5" /> Preguntar tiempo de entrega
             </a>
           </div>
         )}

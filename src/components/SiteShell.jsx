@@ -24,9 +24,16 @@ const businessSchema = {
   name: "Bio Emplast S.A.S.",
   description: "Fabricación y comercialización de empaques plásticos flexibles para la industria alimenticia y agropecuaria.",
   telephone: ["+57 301 533 0596", "+57 311 822 1246"],
-  email: "ventas@bioemplast.co",
+  email: "bioemplastsas@gmail.com",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Transversal 68B Nº 29-28 Sur, Barrio Alquería La Fragua",
+    addressLocality: "Bogotá",
+    addressCountry: "CO",
+  },
   geo: { "@type": "GeoCoordinates", latitude: 4.608528, longitude: -74.130611 },
-  areaServed: "Bogotá, Colombia",
+  areaServed: "Colombia",
+  openingHours: ["Mo-Fr 08:30-17:30", "Sa 08:30-14:00"],
 }
 
 function Brand({ light }) {
@@ -132,13 +139,13 @@ export function SiteShell({ children }) {
             <p className="text-xs font-extrabold uppercase tracking-[.14em] text-white/60">Contacto</p>
             <div className="mt-4 space-y-2 text-sm text-white/80">
               <p>+57 301 533 0596 · +57 311 822 1246</p>
-              <p>ventas@bioemplast.co</p>
+              <p>bioemplastsas@gmail.com</p>
               <a className="block text-white/80 transition-colors hover:text-white" href="https://facebook.com" target="_blank" rel="noreferrer">Facebook ↗</a>
             </div>
           </div>
         </div>
         <div className="site-container flex flex-col gap-2 border-t border-white/15 py-6 text-xs text-white/60 sm:flex-row sm:justify-between">
-          <p>© 2026 Bio Emplast. Todos los derechos reservados.</p>
+          <p>© 2026 Bio Emplast S.A.S. NIT 9000515066-1. Todos los derechos reservados.</p>
           <p>Empaque responsable · Colombia</p>
         </div>
       </footer>

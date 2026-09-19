@@ -28,10 +28,10 @@ const razones = [
 ]
 
 const estadisticas = [
-  { valor: "5+", etiqueta: "Años de experiencia" },
-  { valor: "150+", etiqueta: "Clientes atendidos" },
-  { valor: "100%", etiqueta: "Materiales responsables" },
-  { valor: "24h", etiqueta: "Tiempo de respuesta" },
+  { valor: "14+", etiqueta: "Años de experiencia" },
+  { valor: "30-40", etiqueta: "Clientes atendidos al mes" },
+  { valor: "2012", etiqueta: "Operando desde" },
+  { valor: "Inmediata", etiqueta: "Respuesta a cotización" },
 ]
 
 const redes = [
@@ -43,6 +43,8 @@ const preguntas = [
   { q: "¿Cómo cotizo un producto?", a: "Encuentra el producto en la sección Productos y da clic en \"Cotizar por WhatsApp\", o escríbenos directamente contándonos qué necesitas." },
   { q: "¿Puedo visitar el local?", a: "Sí, puedes visitarnos en nuestro local en Bogotá. Encuentra la dirección exacta y fotos en la sección de Contacto." },
   { q: "¿Qué tipos de empaque manejan?", a: "Manejamos stretch film, bolsas, vinipel, precortes, elementos de bioseguridad y más. Puedes ver el catálogo completo en la sección Productos." },
+  { q: "¿Hay un pedido mínimo?", a: "Para domicilio en Bogotá, el pedido mínimo es de $500.000. Para envíos a nivel nacional no hay un mínimo fijo, pero el cliente asume el costo del transporte." },
+  { q: "¿Cómo puedo pagar?", a: "En Bogotá manejamos pago contra entrega. Para pedidos a nivel nacional, se maneja depósito por adelantado a la cuenta empresarial." },
   { q: "¿Qué hago si no encuentro lo que necesito en el catálogo?", a: "Escríbenos por WhatsApp contándonos qué necesitas, y te confirmamos disponibilidad." },
 ]
 
@@ -150,6 +152,7 @@ export default function Home() {
               Nuestro proceso
             </span>
             <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl">Así trabajamos, de principio a fin</h2>
+            {/* TODO: reemplazar con el texto real del proceso que confirme la clienta */}
             <p className="mt-5 text-muted-foreground leading-7">
               Cada pedido pasa por un proceso controlado, desde la selección de materia
               prima hasta el empaque final, respaldado por maquinaria industrial y

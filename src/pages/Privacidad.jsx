@@ -16,38 +16,41 @@ export default function Privacidad() {
           <div>
             <h2 className="text-lg font-bold text-foreground">1. Responsable del tratamiento</h2>
             <p className="mt-2">
-              Bio Emplast S.A.S., con domicilio en Bogotá, Colombia, es responsable del tratamiento
-              de los datos personales que usted suministre a través de este sitio web, en particular
-              mediante el formulario de contacto.
+              Bio Emplast S.A.S. (NIT 9000515066-1), con domicilio en Transversal 68B Nº
+              29-28 Sur, Barrio Alquería La Fragua, Bogotá D.C., Colombia, es responsable
+              del tratamiento de los datos personales que usted suministre a través de
+              este sitio web, en particular mediante el formulario de contacto.
             </p>
           </div>
 
           <div>
             <h2 className="text-lg font-bold text-foreground">2. Datos que recopilamos</h2>
             <p className="mt-2">
-              A través del formulario de contacto podemos recopilar: nombre, correo electrónico,
-              número de teléfono (opcional) y el contenido del mensaje que usted escriba.
+              A través del formulario de contacto podemos recopilar: nombre, correo
+              electrónico, número de teléfono (opcional) y el contenido del mensaje que
+              usted escriba.
             </p>
           </div>
 
           <div>
             <h2 className="text-lg font-bold text-foreground">3. Finalidad del tratamiento</h2>
             <p className="mt-2">
-              Los datos suministrados se usan exclusivamente para responder su solicitud de
-              cotización o información, y para contactarlo en relación con los productos y
-              servicios de Bio Emplast. No compartimos sus datos con terceros para fines
-              comerciales distintos a este.
+              Los datos suministrados se usan exclusivamente para responder su solicitud
+              de cotización o información, y para contactarlo en relación con los
+              productos y servicios de Bio Emplast. No compartimos sus datos con
+              terceros para fines comerciales distintos a este.
             </p>
           </div>
 
           <div>
             <h2 className="text-lg font-bold text-foreground">4. Derechos del titular</h2>
             <p className="mt-2">
-              De acuerdo con la Ley 1581 de 2012 y el Decreto 1377 de 2013, usted tiene derecho a
-              conocer, actualizar, rectificar y solicitar la supresión de sus datos personales, así
-              como a revocar la autorización otorgada para su tratamiento, escribiendo a{" "}
-              <a href="mailto:ventas@bioemplast.co" className="font-semibold text-brand-green-dark hover:text-brand-green">
-                ventas@bioemplast.co
+              De acuerdo con la Ley 1581 de 2012 y el Decreto 1377 de 2013, usted tiene
+              derecho a conocer, actualizar, rectificar y solicitar la supresión de sus
+              datos personales, así como a revocar la autorización otorgada para su
+              tratamiento, escribiendo a{" "}
+              <a href="mailto:bioemplastsas@gmail.com" className="font-semibold text-brand-green-dark hover:text-brand-green">
+                bioemplastsas@gmail.com
               </a>.
             </p>
           </div>
@@ -55,19 +58,19 @@ export default function Privacidad() {
           <div>
             <h2 className="text-lg font-bold text-foreground">5. Almacenamiento y seguridad</h2>
             <p className="mt-2">
-              Los datos del formulario se almacenan de forma segura en la infraestructura de
-              nuestro proveedor tecnológico (Supabase), aplicando controles de acceso para proteger
-              su información.
+              Los datos del formulario se almacenan de forma segura en la infraestructura
+              de nuestro proveedor tecnológico (Supabase), aplicando controles de acceso
+              para proteger su información.
             </p>
           </div>
 
           <div>
             <h2 className="text-lg font-bold text-foreground">6. Contacto</h2>
             <p className="mt-2">
-              Para consultas relacionadas con el tratamiento de sus datos personales, puede
-              escribirnos a{" "}
-              <a href="mailto:ventas@bioemplast.co" className="font-semibold text-brand-green-dark hover:text-brand-green">
-                ventas@bioemplast.co
+              Para consultas relacionadas con el tratamiento de sus datos personales,
+              puede escribirnos a{" "}
+              <a href="mailto:bioemplastsas@gmail.com" className="font-semibold text-brand-green-dark hover:text-brand-green">
+                bioemplastsas@gmail.com
               </a>{" "}
               o comunicarse por WhatsApp a los números publicados en la página de Contacto.
             </p>

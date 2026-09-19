@@ -17,7 +17,7 @@ export default function Nosotros() {
     <>
       <Helmet>
         <title>Nosotros | Bio Emplast</title>
-        <meta name="description" content="Conoce la misión, visión y valores de Bio Emplast S.A.S., empresa colombiana de empaques plásticos flexibles." />
+        <meta name="description" content="Desde 2012: la historia, misión, visión y valores de Bio Emplast S.A.S., empresa colombiana de empaques plásticos flexibles." />
       </Helmet>
 
       <AnimatedSection className="site-container py-20 lg:py-28">
@@ -29,7 +29,25 @@ export default function Nosotros() {
       </AnimatedSection>
 
       <section className="bg-secondary/60 py-20 lg:py-28">
-        <AnimatedSection className="site-container grid gap-8 md:grid-cols-2">
+        <AnimatedSection className="site-container">
+          <p className="text-xs font-bold uppercase tracking-[.14em] text-brand-green-dark">Nuestra historia</p>
+          <h2 className="mt-3 max-w-2xl text-3xl font-extrabold sm:text-4xl">Desde 2012, escuchando al cliente</h2>
+          <div className="mt-8 max-w-3xl space-y-5 text-lg leading-8 text-muted-foreground">
+            <p>
+              Nuestra historia comenzó oficialmente el 12 de abril de 2012 bajo el nombre de Plastiempaques. En esos primeros días, el motor del proyecto fue un esfuerzo directo y humano: salir a la calle, tocar puertas y visitar a posibles clientes uno a uno. Caminamos de la mano con la industria alimentaria, dando a conocer las ventajas de los empaques plásticos flexibles y, sobre todo, escuchando. Cada visita nos permitió entender a fondo las necesidades individuales de conservación, frescura y presentación de cada alimento.
+            </p>
+            <p>
+              Gracias a esa cercanía y a la confianza de nuestros primeros clientes, transformamos sus desafíos en soluciones reales. Con el paso de los años, el mercado evolucionó y nosotros también. Por eso, en el año 2021, tomamos la decisión estratégica de reinventarnos y cambiar nuestro nombre a BIOEMPLAST S.A.S., una identidad que refleja nuestra madurez comercial y un compromiso renovado con la innovación y el desarrollo sostenible en el sector de los empaques.
+            </p>
+            <p>
+              Hoy, lo que empezó como un sueño de visitas puerta a puerta es una empresa sólida que sigue fiel a su origen: escuchar al cliente para entregarle el empaque flexible perfecto.
+            </p>
+          </div>
+        </AnimatedSection>
+      </section>
+
+      <AnimatedSection className="site-container py-20 lg:py-28">
+        <div className="grid gap-8 md:grid-cols-2">
           <div className="card-shadow p-8">
             <p className="text-xs font-extrabold uppercase tracking-[.14em] text-brand-green-dark">Misión</p>
             <p className="mt-5 text-lg leading-8">
@@ -42,24 +60,26 @@ export default function Nosotros() {
               Ser una empresa líder a nivel nacional en la producción de empaques flexibles. Nos proyectamos como el aliado estratégico ideal mediante la calidad superior, el suministro puntual y soluciones innovadoras que impulsan el desarrollo sostenible y el cuidado del medio ambiente.
             </p>
           </div>
-        </AnimatedSection>
-      </section>
-
-      <AnimatedSection className="site-container py-20 lg:py-28">
-        <p className="text-xs font-bold uppercase tracking-[.14em] text-brand-green-dark">Nuestros valores</p>
-        <h2 className="mt-3 max-w-2xl text-3xl font-extrabold sm:text-4xl">Lo que guía cada decisión</h2>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {valores.map((v, i) => (
-            <AnimatedSection key={v.titulo} as="div" delay={i * 0.08} className="card-shadow p-7">
-              <div className="flex size-11 items-center justify-center rounded-lg bg-brand-green/15">
-                <v.icon className="size-5 text-brand-green-dark" />
-              </div>
-              <h3 className="mt-5 font-bold">{v.titulo}</h3>
-              <p className="mt-3 text-sm leading-6 text-muted-foreground">{v.texto}</p>
-            </AnimatedSection>
-          ))}
         </div>
       </AnimatedSection>
+
+      <section className="bg-secondary/60 py-20 lg:py-28">
+        <AnimatedSection className="site-container">
+          <p className="text-xs font-bold uppercase tracking-[.14em] text-brand-green-dark">Nuestros valores</p>
+          <h2 className="mt-3 max-w-2xl text-3xl font-extrabold sm:text-4xl">Lo que guía cada decisión</h2>
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {valores.map((v, i) => (
+              <AnimatedSection key={v.titulo} as="div" delay={i * 0.08} className="card-shadow p-7">
+                <div className="flex size-11 items-center justify-center rounded-lg bg-brand-green/15">
+                  <v.icon className="size-5 text-brand-green-dark" />
+                </div>
+                <h3 className="mt-5 font-bold">{v.titulo}</h3>
+                <p className="mt-3 text-sm leading-6 text-muted-foreground">{v.texto}</p>
+              </AnimatedSection>
+            ))}
+          </div>
+        </AnimatedSection>
+      </section>
 
       <AnimatedSection as="section" className="bg-brand-green-dark py-20 text-center text-white lg:py-28">
         <div className="site-container">

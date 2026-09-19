@@ -6,10 +6,9 @@ import { ContactForm } from "../components/ContactForm"
 import { AnimatedSection } from "../components/AnimatedSection"
 import { whatsappUrl } from "../components/SiteShell"
 
+const DIRECCION = "Transversal 68B Nº 29-28 Sur, Barrio Alquería La Fragua, Bogotá D.C."
 const GOOGLE_MAPS_URL = "https://goo.gl/maps/icrowjepP9zUoeUz9?g_st=aw"
-const LAT = 4.608528
-const LNG = -74.130611
-const MAP_EMBED_URL = `https://www.google.com/maps?q=${LAT},${LNG}&z=17&output=embed`
+const MAP_EMBED_URL = `https://www.google.com/maps?q=${encodeURIComponent(DIRECCION)}&output=embed`
 
 export default function Contacto() {
   return (
@@ -57,13 +56,15 @@ export default function Contacto() {
               <dt className="flex items-center gap-3 text-sm font-bold">
                 <Mail className="size-4 text-brand-green-dark" /> Correo
               </dt>
-              <dd className="mt-2 text-muted-foreground">ventas@bioemplast.co</dd>
+              <dd className="mt-2 text-muted-foreground">bioemplastsas@gmail.com</dd>
             </div>
             <div>
               <dt className="flex items-center gap-3 text-sm font-bold">
                 <MapPin className="size-4 text-brand-green-dark" /> Ubicación
               </dt>
               <dd className="mt-2 text-muted-foreground">
+                {DIRECCION}
+                <br />
                 <a href={GOOGLE_MAPS_URL} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 font-semibold text-brand-green-dark hover:text-brand-green">
                   Abrir en Google Maps <ExternalLink className="size-3.5" />
                 </a>
@@ -72,9 +73,11 @@ export default function Contacto() {
             <div>
               <dt className="text-sm font-bold">Horario de atención</dt>
               <dd className="mt-2 leading-7 text-muted-foreground">
-                Lunes a viernes · 8:00 a.m. – 5:30 p.m.
+                Lunes a viernes · 8:30 a.m. – 5:30 p.m.
                 <br />
-                Sábados · 8:00 a.m. – 2:00 p.m.
+                Sábados · 8:30 a.m. – 2:00 p.m.
+                <br />
+                Domingos y festivos: sin servicio
               </dd>
             </div>
           </dl>

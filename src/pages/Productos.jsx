@@ -3,6 +3,7 @@ import {
   ImageOff,
   Layers,
   Link2,
+  Loader2,
   MessageCircle,
   Package2,
   Scissors,
@@ -12,50 +13,21 @@ import {
   X,
 } from "lucide-react"
 import { Helmet } from "react-helmet-async"
-import { useDeferredValue, useMemo, useState } from "react"
+import { useDeferredValue, useEffect, useMemo, useState } from "react"
 
 import { AnimatedSection } from "../components/AnimatedSection"
 import { NewProductSection } from "../components/NewProductSection"
-import { catalogo } from "../data/catalogo"
+import { supabase } from "../lib/supabase"
 import { linkWhatsApp } from "../data/productos"
 
-const notas = {
-  "empaques-basicos": "Soluciones esenciales",
-  "stretch-film": "14 medidas",
-  vinipel: "22 medidas",
-  "bolsa-manija": "9 tamaños · 7 colores",
-  "rollos-precorte": "10 tipos",
-  bioseguridad: "4 referencias",
-  zunchos: "Sujeción industrial",
-}
-
 const iconosCategoria = {
-  "empaques-basicos": Boxes,
-  "stretch-film": Layers,
-  vinipel: Layers,
-  "bolsa-manija": ShoppingBag,
-  "rollos-precorte": Scissors,
-  bioseguridad: ShieldCheck,
-  zunchos: Link2,
-}
-
-function tarjetasDe(grupo) {
-  const tarjetas = []
-  if (grupo.items) {
-    for (const it of grupo.items) tarjetas.push({ label: it.nombre, imagen: it.imagen })
-  }
-  if (grupo.subgrupos) {
-    const multiple = grupo.subgrupos.length > 1
-    for (const sg of grupo.subgrupos) {
-      for (const v of sg.variantes) {
-        tarjetas.push({
-          label: multiple ? `${sg.nombre} · ${v.etiqueta}` : v.etiqueta,
-          imagen: v.imagen,
-        })
-      }
-    }
-  }
-  return tarjetas
+  "Empaques y Bolsas Básicas": Boxes,
+  "Stretch Film": Layers,
+  "Vinipel": Layers,
+  "Bolsa Manija": ShoppingBag,
+  "Rollos de Precorte": Scissors,
+  "Elementos de Bioseguridad": ShieldCheck,
+  "Zunchos Plásticos y Grapas": Link2,
 }
 
 function resaltar(texto, termino) {
@@ -75,12 +47,7 @@ function ImagenProducto({ src, alt }) {
   const [estado, setEstado] = useState(src ? "cargando" : "error")
 
   if (estado === "error") {
-    return (
-      <div className="flex h-full w-full flex-col items-center justify-center gap-1.5 bg-secondary text-muted-foreground">
-        <ImageOff className="size-5" strokeWidth={1.5} />
-        <span className="text-[11px] font-medium">Foto próximamente</span>
-      </div>
-    )
+    return <div className="flex h-full w-full flex-col items-center justify-center gap-1.5 bg-secondary text-muted-foreground"><ImageOff className="size-5" strokeWidth={1.5} /><span className="text-[11px] font-medium">Foto próximamente</span></div>
   }
 
   return (
@@ -109,33 +76,63 @@ function ProductoTarjeta({ label, imagen, categoria, termino }) {
 }
 
 export default function Productos() {
+  const [productos, setProductos] = useState([])
+  const [cargando, setCargando] = useState(true)
+  const [errorCarga, setErrorCarga] = useState("")
   const [active, setActive] = useState(0)
   const [search, setSearch] = useState("")
   const terminoBusqueda = useDeferredValue(search.trim())
 
-  const allTarjetas = useMemo(
-    () => catalogo.flatMap((g) => tarjetasDe(g).map((t) => ({ ...t, categoria: g.nombre }))),
-    []
-  )
+  useEffect(() => {
+    async function cargar() {
+      if (!supabase) {
+        setErrorCarga("El catálogo no está disponible en este momento.")
+        setCargando(false)
+        return
+      }
+      const { data, error } = await supabase.from("productos").select("*").order("orden")
+      if (error) {
+        setErrorCarga(error.message)
+      } else {
+        setProductos(data ?? [])
+      }
+      setCargando(false)
+    }
+    cargar()
+  }, [])
+
+  const categorias = useMemo(() => {
+    const vistas = []
+    for (const p of productos) {
+      if (!vistas.includes(p.categoria)) vistas.push(p.categoria)
+    }
+    return vistas
+  }, [productos])
+
+  const tarjetasPorCategoria = useMemo(() => {
+    const mapa = {}
+    for (const p of productos) {
+      if (!mapa[p.categoria]) mapa[p.categoria] = []
+      mapa[p.categoria].push({ label: p.nombre, imagen: p.imagen_url })
+    }
+    return mapa
+  }, [productos])
 
   const searching = terminoBusqueda.length > 0
   const resultados = useMemo(() => {
     if (!searching) return []
     const term = terminoBusqueda.toLowerCase()
-    return allTarjetas.filter((t) => t.label.toLowerCase().includes(term))
-  }, [searching, terminoBusqueda, allTarjetas])
+    return productos.filter((p) => p.nombre.toLowerCase().includes(term)).map((p) => ({ label: p.nombre, imagen: p.imagen_url, categoria: p.categoria }))
+  }, [searching, terminoBusqueda, productos])
 
-  const grupo = catalogo[active]
-  const tarjetas = tarjetasDe(grupo)
+  const categoriaActiva = categorias[active]
+  const tarjetas = categoriaActiva ? tarjetasPorCategoria[categoriaActiva] ?? [] : []
 
   return (
     <>
       <Helmet>
         <title>Productos | Catálogo Bio Emplast</title>
         <meta name="description" content="Catálogo de stretch film, bolsas, vinipel, precortes, bioseguridad y zunchos. Cotiza cada producto directo por WhatsApp." />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Catálogo Bio Emplast" />
-        <meta property="og:description" content="Stretch film, bolsas, vinipel, precortes, bioseguridad y zunchos. Cotiza cada línea directo por WhatsApp." />
       </Helmet>
 
       <section className="relative flex min-h-[50vh] items-center overflow-hidden">
@@ -164,12 +161,14 @@ export default function Productos() {
         </div>
       </div>
 
-      {searching ? (
+      {cargando ? (
+        <div className="site-container flex justify-center py-24"><Loader2 className="size-6 animate-spin text-brand-green-dark" /></div>
+      ) : errorCarga ? (
+        <div className="site-container py-14"><p className="text-muted-foreground">{errorCarga}</p></div>
+      ) : searching ? (
         <AnimatedSection className="site-container py-14 lg:py-20">
           <h2 className="text-2xl font-extrabold sm:text-3xl" role="status" aria-live="polite">
-            {resultados.length > 0
-              ? `${resultados.length} resultado${resultados.length === 1 ? "" : "s"} para "${terminoBusqueda}"`
-              : `Sin resultados para "${terminoBusqueda}"`}
+            {resultados.length > 0 ? `${resultados.length} resultado${resultados.length === 1 ? "" : "s"} para "${terminoBusqueda}"` : `Sin resultados para "${terminoBusqueda}"`}
           </h2>
 
           {resultados.length === 0 ? (
@@ -192,13 +191,13 @@ export default function Productos() {
           <nav aria-label="Líneas de producto" className="sticky top-16 z-10 border-b border-border bg-background/95 backdrop-blur">
             <div className="site-container">
               <div className="flex gap-2 overflow-x-auto py-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                {catalogo.map((g, i) => {
-                  const Icono = iconosCategoria[g.id] ?? Package2
+                {categorias.map((nombreCategoria, i) => {
+                  const Icono = iconosCategoria[nombreCategoria] ?? Package2
                   const esActivo = active === i
                   return (
-                    <button key={g.id} onClick={() => setActive(i)} aria-pressed={esActivo} className={`flex shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-bold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-green-dark ${esActivo ? "bg-brand-green-dark text-white" : "bg-secondary text-foreground hover:bg-secondary/70"}`}>
+                    <button key={nombreCategoria} onClick={() => setActive(i)} aria-pressed={esActivo} className={`flex shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-bold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-green-dark ${esActivo ? "bg-brand-green-dark text-white" : "bg-secondary text-foreground hover:bg-secondary/70"}`}>
                       <Icono className="size-4" strokeWidth={2} />
-                      {g.nombre}
+                      {nombreCategoria}
                     </button>
                   )
                 })}
@@ -206,14 +205,11 @@ export default function Productos() {
             </div>
           </nav>
 
-          <AnimatedSection key={grupo.id} className="site-container py-14 lg:py-20">
+          <AnimatedSection key={categoriaActiva} className="site-container py-14 lg:py-20">
             <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-1">
-              <h2 className="text-2xl font-extrabold sm:text-3xl">{grupo.nombre}</h2>
-              <span className="text-sm text-muted-foreground">
-                {notas[grupo.id]} · {tarjetas.length} referencia{tarjetas.length === 1 ? "" : "s"}
-              </span>
+              <h2 className="text-2xl font-extrabold sm:text-3xl">{categoriaActiva}</h2>
+              <span className="text-sm text-muted-foreground">{tarjetas.length} referencia{tarjetas.length === 1 ? "" : "s"}</span>
             </div>
-            <p className="mt-2 max-w-2xl text-sm text-muted-foreground">{grupo.descripcion}</p>
 
             <div className="mt-10 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
               {tarjetas.map((t) => (

@@ -13,6 +13,7 @@ const Privacidad = lazy(() => import("./pages/Privacidad"))
 const NotFound = lazy(() => import("./pages/NotFound"))
 const AdminLogin = lazy(() => import("./pages/admin/AdminLogin"))
 const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"))
+const AdminProductoForm = lazy(() => import("./pages/admin/AdminProductoForm"))
 
 function SitioPublico() {
   return (
@@ -38,14 +39,9 @@ function App() {
         <Suspense fallback={<div className="min-h-screen" />}>
           <Routes>
             <Route path="/admin/login" element={<AdminLogin />} />
-            <Route
-              path="/admin"
-              element={
-                <RequireAuth>
-                  <AdminDashboard />
-                </RequireAuth>
-              }
-            />
+            <Route path="/admin/productos/nuevo" element={<RequireAuth><AdminProductoForm /></RequireAuth>} />
+            <Route path="/admin/productos/:id/editar" element={<RequireAuth><AdminProductoForm /></RequireAuth>} />
+            <Route path="/admin" element={<RequireAuth><AdminDashboard /></RequireAuth>} />
             <Route path="/*" element={<SitioPublico />} />
           </Routes>
         </Suspense>

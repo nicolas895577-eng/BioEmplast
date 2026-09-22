@@ -102,10 +102,10 @@ export default function Contacto() {
 
       <AnimatedSection className="site-container pb-20 lg:pb-28">
         <p className="text-xs font-extrabold uppercase tracking-[.14em] text-brand-green-dark">Así nos vas a encontrar</p>
-        <h2 className="mt-3 text-2xl font-extrabold sm:text-3xl">Nuestro local en fotos</h2>
+        <h2 className="mt-3 text-2xl font-extrabold sm:text-3xl">Nuestra bodega en fotos</h2>
         <div className="mt-8 grid gap-6 sm:grid-cols-2">
           <div className="card-shadow overflow-hidden">
-            <img src="/ubicacion-1.jpg" alt="Fachada del local de Bio Emplast" className="aspect-[4/3] w-full object-cover" />
+            <img src="/ubicacion-1.jpg" alt="Fachada de la bodega de Bio Emplast" className="aspect-[4/3] w-full object-cover" />
           </div>
           <div className="card-shadow overflow-hidden">
             <img src="/ubicacion-2.jpg" alt="Vista de la entrada de Bio Emplast" className="aspect-[4/3] w-full object-cover" />

@@ -41,7 +41,7 @@ const redes = [
 
 const preguntas = [
   { q: "¿Cómo cotizo un producto?", a: "Encuentra el producto en la sección Productos y da clic en \"Cotizar por WhatsApp\", o escríbenos directamente contándonos qué necesitas." },
-  { q: "¿Puedo visitar el local?", a: "Sí, puedes visitarnos en nuestro local en Bogotá. Encuentra la dirección exacta y fotos en la sección de Contacto." },
+  { q: "¿Puedo visitar la bodega?", a: "Sí, puedes visitarnos en nuestra bodega en Bogotá. Encuentra la dirección exacta y fotos en la sección de Contacto." },
   { q: "¿Qué tipos de empaque manejan?", a: "Manejamos stretch film, bolsas, vinipel, precortes, elementos de bioseguridad y más. Puedes ver el catálogo completo en la sección Productos." },
   { q: "¿Hay un pedido mínimo?", a: "Para domicilio en Bogotá, el pedido mínimo es de $500.000. Para envíos a nivel nacional no hay un mínimo fijo, pero el cliente asume el costo del transporte." },
   { q: "¿Cómo puedo pagar?", a: "En Bogotá manejamos pago contra entrega. Para pedidos a nivel nacional, se maneja depósito por adelantado a la cuenta empresarial." },

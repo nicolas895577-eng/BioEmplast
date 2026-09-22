@@ -35,7 +35,7 @@ const estadisticas = [
 ]
 
 const redes = [
-  { nombre: "Instagram", usuario: "@bioemplast", icon: Camera, gradiente: "from-orange-400 to-pink-600", url: "https://instagram.com" },
+  { nombre: "Instagram", usuario: "@bioemplast.sas", icon: Camera, gradiente: "from-orange-400 to-pink-600", url: "https://www.instagram.com/bioemplast.sas/" },
   { nombre: "Facebook", usuario: "Bio Emplast", icon: Link2, gradiente: "from-blue-500 to-blue-700", url: "https://www.facebook.com/share/19bA83jsCd/" },
 ]
 
@@ -43,7 +43,7 @@ const preguntas = [
   { q: "¿Cómo cotizo un producto?", a: "Encuentra el producto en la sección Productos y da clic en \"Cotizar por WhatsApp\", o escríbenos directamente contándonos qué necesitas." },
   { q: "¿Puedo visitar la bodega?", a: "Sí, puedes visitarnos en nuestra bodega en Bogotá. Encuentra la dirección exacta y fotos en la sección de Contacto." },
   { q: "¿Qué tipos de empaque manejan?", a: "Manejamos stretch film, bolsas, vinipel, precortes, elementos de bioseguridad y más. Puedes ver el catálogo completo en la sección Productos." },
-  { q: "¿Hay un pedido mínimo?", a: "Para domicilio en Bogotá, el pedido mínimo es de $500.000. Para envíos a nivel nacional no hay un mínimo fijo, pero el cliente asume el costo del transporte." },
+  { q: "¿Hay un pedido mínimo?", a: "Para domicilio en Bogotá, el pedido mínimo es de $200.000. Para envíos a nivel nacional no hay un mínimo fijo, pero el cliente asume el costo del transporte." },
   { q: "¿Cómo puedo pagar?", a: "En Bogotá manejamos pago contra entrega. Para pedidos a nivel nacional, se maneja depósito por adelantado a la cuenta empresarial." },
   { q: "¿Qué hago si no encuentro lo que necesito en el catálogo?", a: "Escríbenos por WhatsApp contándonos qué necesitas, y te confirmamos disponibilidad." },
 ]
@@ -72,7 +72,7 @@ export default function Home() {
               Expertos en <span className="text-brand-green">empaque industrial</span> con enfoque ecológico
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-8 text-white/85">
-              Producimos stretch film, bolsas especializadas, vinipel y servicios de precorte con trazabilidad. Protegemos tu producto y cuidamos el planeta.
+              Producimos stretch film transparente y negro, bolsas en cualquier medida para la industria alimenticia y otros mercados, con impresión flexográfica de hasta 6 tintas. Contamos también con vinipel, rollos en precorte y tubulares, y precintos de trazabilidad — protegiendo tu producto y cuidando el planeta en cada entrega.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <Button asChild variant="whatsapp" size="lg">

@@ -26,6 +26,11 @@ export function ContactForm() {
     try {
       const { error } = await supabase.from("mensajes_contacto").insert([form])
       if (error) throw error
+
+      supabase.functions.invoke("send-contact-email", { body: form }).catch((err) => {
+        console.error("No se pudo enviar la notificación por correo:", err)
+      })
+
       setStatus("success")
       setForm({ nombre: "", correo: "", telefono: "", mensaje: "" })
       setAceptaPrivacidad(false)

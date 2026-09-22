@@ -31,7 +31,7 @@ export default function Contacto() {
                 <a href={whatsappUrl} target="_blank" rel="noreferrer"><MessageCircle /> Escribir por WhatsApp</a>
               </Button>
               <Button asChild variant="outline" size="lg" className="border-white bg-white text-brand-ink hover:bg-white/90">
-                <a href="https://facebook.com" target="_blank" rel="noreferrer"><Link2 /> Ver Facebook <ExternalLink /></a>
+                <a href="https://www.facebook.com/share/19bA83jsCd/" target="_blank" rel="noreferrer"><Link2 /> Ver Facebook <ExternalLink /></a>
               </Button>
             </div>
           </AnimatedSection>

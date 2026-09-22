@@ -36,7 +36,7 @@ const estadisticas = [
 
 const redes = [
   { nombre: "Instagram", usuario: "@bioemplast", icon: Camera, gradiente: "from-orange-400 to-pink-600", url: "https://instagram.com" },
-  { nombre: "Facebook", usuario: "Bio Emplast", icon: Link2, gradiente: "from-blue-500 to-blue-700", url: "https://facebook.com" },
+  { nombre: "Facebook", usuario: "Bio Emplast", icon: Link2, gradiente: "from-blue-500 to-blue-700", url: "https://www.facebook.com/share/19bA83jsCd/" },
 ]
 
 const preguntas = [

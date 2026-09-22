@@ -140,7 +140,7 @@ export function SiteShell({ children }) {
             <div className="mt-4 space-y-2 text-sm text-white/80">
               <p>+57 301 533 0596 · +57 311 822 1246</p>
               <p>bioemplastsas@gmail.com</p>
-              <a className="block text-white/80 transition-colors hover:text-white" href="https://facebook.com" target="_blank" rel="noreferrer">Facebook ↗</a>
+              <a className="block text-white/80 transition-colors hover:text-white" href="https://www.facebook.com/share/19bA83jsCd/" target="_blank" rel="noreferrer">Facebook ↗</a>
             </div>
           </div>
         </div>

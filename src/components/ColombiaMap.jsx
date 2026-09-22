@@ -28,9 +28,9 @@ export function ColombiaMap() {
           {activo && (
             <motion.div
               key={activo.id}
-              initial={{ opacity: 0, y: 10, scale: 0.96 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -6, scale: 0.96 }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
               transition={{ duration: 0.22, ease: "easeOut" }}
               className="mt-6 inline-flex flex-col items-start gap-3 rounded-lg border border-border bg-card p-4"
             >
@@ -46,7 +46,7 @@ export function ColombiaMap() {
       </div>
 
       <div className="card-shadow overflow-hidden bg-white p-4">
-        <svg viewBox={COLOMBIA_MAP_VIEWBOX} className="h-auto w-full overflow-visible" role="img" aria-label="Mapa de departamentos de Colombia">
+        <svg viewBox={COLOMBIA_MAP_VIEWBOX} className="h-auto w-full" role="img" aria-label="Mapa de departamentos de Colombia">
           {departamentosColombia.map((dep, i) => {
             const isActive = activo?.id === dep.id
             return (
@@ -58,11 +58,10 @@ export function ColombiaMap() {
                     onMouseEnter={() => setHover(dep)}
                     onMouseLeave={() => setHover(null)}
                     onClick={() => setSelected(dep)}
-                    initial={{ opacity: 0, scale: 0.82 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
                     viewport={{ once: true, margin: "-40px" }}
-                    transition={{ duration: 0.5, delay: i * 0.018, ease: [0.2, 0.8, 0.2, 1] }}
-                    style={{ transformOrigin: "250px 320px" }}
+                    transition={{ duration: 0.4, delay: i * 0.015 }}
                     className={`cursor-pointer stroke-white transition-[fill,filter] duration-200 ${
                       isActive
                         ? "fill-brand-green [filter:drop-shadow(0_0_5px_rgba(56,206,10,0.65))]"
@@ -75,24 +74,17 @@ export function ColombiaMap() {
             )
           })}
 
-          <motion.g
-            initial={{ opacity: 0, scale: 0.5 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: departamentosColombia.length * 0.018 + 0.15, type: "spring", stiffness: 260, damping: 15 }}
-          >
-            <circle cx={bogotaDC.x} cy={bogotaDC.y} r={activo?.id === bogotaDC.id ? 9 : 7} className={`transition-opacity ${activo?.id === bogotaDC.id ? "fill-brand-yellow/40" : "fill-brand-green/40"} animate-ping`} />
-            <circle
-              cx={bogotaDC.x}
-              cy={bogotaDC.y}
-              r={activo?.id === bogotaDC.id ? 6 : 4}
-              onMouseEnter={() => setHover(bogotaDC)}
-              onMouseLeave={() => setHover(null)}
-              onClick={() => setSelected(bogotaDC)}
-              className={`cursor-pointer stroke-white transition-all ${activo?.id === bogotaDC.id ? "fill-brand-yellow" : "fill-brand-green-dark"}`}
-              strokeWidth="1.5"
-            />
-          </motion.g>
+          <circle cx={bogotaDC.x} cy={bogotaDC.y} r={activo?.id === bogotaDC.id ? 9 : 7} className={`transition-opacity animate-ping ${activo?.id === bogotaDC.id ? "fill-brand-yellow/40" : "fill-brand-green/40"}`} />
+          <circle
+            cx={bogotaDC.x}
+            cy={bogotaDC.y}
+            r={activo?.id === bogotaDC.id ? 6 : 4}
+            onMouseEnter={() => setHover(bogotaDC)}
+            onMouseLeave={() => setHover(null)}
+            onClick={() => setSelected(bogotaDC)}
+            className={`cursor-pointer stroke-white transition-all ${activo?.id === bogotaDC.id ? "fill-brand-yellow" : "fill-brand-green-dark"}`}
+            strokeWidth="1.5"
+          />
         </svg>
       </div>
     </div>

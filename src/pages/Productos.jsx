@@ -136,7 +136,7 @@ export default function Productos() {
       </Helmet>
 
       <section className="relative flex min-h-[50vh] items-center overflow-hidden">
-        <img src="/productos/bolsa-manija-colores-negra-blanca-naranj-bolsa-20klx100-48.jpg" alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover" />
+        <img src="/productos/hero-productos.jpg" alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover" />
         <div className="hero-overlay absolute inset-0" />
         <div className="site-container relative py-20 text-white">
           <AnimatedSection className="max-w-2xl">

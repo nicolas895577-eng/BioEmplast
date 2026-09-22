@@ -63,7 +63,7 @@ export default function Home() {
       </Helmet>
 
       <section className="relative min-h-[85vh] flex items-center overflow-hidden">
-        <img src="/productos/rollos--57.jpg" alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover" />
+        <img src="/productos/hero-inicio.jpg" alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover" />
         <div className="hero-overlay absolute inset-0" />
         <div className="site-container relative py-24 text-white">
           <AnimatedSection className="max-w-2xl">

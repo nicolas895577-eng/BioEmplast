@@ -93,7 +93,7 @@ export default function Contacto() {
           <iframe
             title="Ubicación de Bio Emplast"
             src={MAP_EMBED_URL}
-            className="h-[420px] w-full border-0"
+            className="h-[280px] w-full border-0 sm:h-[420px]"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           />

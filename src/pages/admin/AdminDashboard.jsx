@@ -48,21 +48,21 @@ export default function AdminDashboard() {
       </Helmet>
 
       <header className="bg-brand-green-dark text-white">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-          <div className="flex items-center gap-2.5">
-            <img src="/logo-icono.png" alt="" className="h-8 w-auto" />
+        <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4">
+          <div className="flex items-center gap-2 sm:gap-2.5">
+            <img src="/logo-icono.png" alt="" className="h-7 w-auto sm:h-8" />
             <div>
               <p className="font-display text-sm font-extrabold leading-none">Bio Emplast</p>
-              <p className="text-xs text-white/70">Panel de administración</p>
+              <p className="hidden text-xs text-white/70 sm:block">Panel de administración</p>
             </div>
           </div>
-          <button onClick={handleLogout} className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3.5 py-2 text-xs font-bold transition-colors hover:bg-white/20">
-            <LogOut className="size-3.5" /> Cerrar sesión
+          <button onClick={handleLogout} className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-white/10 px-3 py-2 text-xs font-bold transition-colors hover:bg-white/20">
+            <LogOut className="size-3.5" /> <span className="hidden sm:inline">Cerrar sesión</span>
           </button>
         </div>
       </header>
 
-      <main className="mx-auto max-w-5xl px-6 py-10">
+      <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-10">
         {error && <p className="mb-6 rounded-md bg-destructive/10 p-3 text-sm text-destructive">{error}</p>}
 
         <div className="mb-6 flex items-center justify-between">

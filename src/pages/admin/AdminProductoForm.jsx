@@ -98,7 +98,7 @@ export default function AdminProductoForm() {
       </Helmet>
 
       <header className="bg-brand-green-dark text-white">
-        <div className="mx-auto flex max-w-2xl items-center gap-3 px-6 py-4">
+        <div className="mx-auto flex max-w-2xl items-center gap-3 px-4 py-3 sm:px-6 sm:py-4">
           <Link to="/admin" className="rounded-full p-1.5 hover:bg-white/10"><ArrowLeft className="size-5" /></Link>
           <div>
             <p className="font-display text-sm font-extrabold leading-none">Bio Emplast</p>
@@ -107,7 +107,7 @@ export default function AdminProductoForm() {
         </div>
       </header>
 
-      <main className="mx-auto max-w-2xl px-6 py-10">
+      <main className="mx-auto max-w-2xl px-4 py-8 sm:px-6 sm:py-10">
         <form onSubmit={handleSubmit} className="card-shadow bg-card p-6 sm:p-8">
           <p className="text-xs font-extrabold uppercase tracking-[.14em] text-brand-green-dark">Catálogo</p>
           <h1 className="mt-1 text-xl font-extrabold">{editando ? "Editar producto" : "Agregar producto nuevo"}</h1>

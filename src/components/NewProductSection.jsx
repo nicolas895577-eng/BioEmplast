@@ -41,7 +41,7 @@ export function NewProductSection() {
             <img src="/nuevo-producto/una-lifestyle.jpg" alt="Bolsas Una a Una en uso" className="aspect-[3/2] w-full object-cover lg:h-full lg:aspect-auto" />
           </div>
 
-          <div className="grid items-stretch gap-5 sm:grid-cols-3">
+          <div className="grid items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {presentaciones.map((p) => (
               <div key={p.nombre} className="card-shadow flex h-full flex-col overflow-hidden">
                 <div className="aspect-square bg-white">

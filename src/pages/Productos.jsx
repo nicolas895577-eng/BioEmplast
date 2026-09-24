@@ -195,7 +195,7 @@ export default function Productos() {
                   const Icono = iconosCategoria[nombreCategoria] ?? Package2
                   const esActivo = active === i
                   return (
-                    <button key={nombreCategoria} onClick={() => setActive(i)} aria-pressed={esActivo} className={`flex shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-bold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-green-dark ${esActivo ? "bg-brand-green-dark text-white" : "bg-secondary text-foreground hover:bg-secondary/70"}`}>
+                    <button key={nombreCategoria} onClick={() => setActive(i)} aria-pressed={esActivo} className={`flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-bold transition-colors sm:gap-2 sm:px-4 sm:py-2 sm:text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-green-dark ${esActivo ? "bg-brand-green-dark text-white" : "bg-secondary text-foreground hover:bg-secondary/70"}`}>
                       <Icono className="size-4" strokeWidth={2} />
                       {nombreCategoria}
                     </button>
